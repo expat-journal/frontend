@@ -1,10 +1,14 @@
 // import action types
 
-import { 
-    LOGIN_START, 
-    LOGIN_SUCCESS, 
-    LOGIN_FAIL,
+import {
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  REGISTER_START,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE
 } from "../actions";
+import {} from "../actions";
 
 const initialState = {
   posts: [],
@@ -35,6 +39,26 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         loggingIn: false,
         error: action.payload
+      };
+    case REGISTER_START:
+      return {
+        ...state,
+        error: null,
+        registeringUser: true
+      };
+
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        error: null,
+        registeringUser: false,
+        users: action.payload
+      };
+    case REGISTER_FAILURE:
+      return {
+        ...state,
+        error: "Something went wrong",
+        registeringUser: false
       };
     default:
       return state;
