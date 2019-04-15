@@ -16,7 +16,10 @@ class Register extends Component {
 
   registerUser = e => {
     e.preventDefault();
-    this.props.registerUser(this.state);
+    if (this.state.user_name) {
+    } else {
+      this.props.registerUser(this.state.user_name, this.state.password);
+    }
     this.setState({
       user_name: "",
       password: ""
@@ -54,7 +57,13 @@ class Register extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    users: state.users
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { registerUser }
 )(Register);
