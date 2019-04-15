@@ -1,12 +1,11 @@
 import axios from "axios";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
-// for login action creator LoginPage.js
+// login action suite for LoginPage.js
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 
-// action creator for logging in with POST request
 export const login = credentials => dispatch => {
   dispatch({ type: LOGIN_START });
   return axios
@@ -22,6 +21,8 @@ export const login = credentials => dispatch => {
       dispatch({ type: LOGIN_FAIL, payload: err });
     });
 };
+
+// register action suite for Register.js
 
 export const REGISTER_START = "REGISTER_START";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
@@ -43,3 +44,25 @@ export const registerUser = credentials => dispatch => {
       })
     );
 };
+
+// posts action suite for Posts.js
+
+export const GET_POSTS_START = "GET_POSTS_START";
+export const GET_POSTS_SUCCESS = "GET_POSTS_SUCCESS";
+export const GET_POSTS_FAIL = "GET_POSTS_FAIL";
+
+export const getPosts = () => dispatch => {
+  dispatch({ type: GET_POSTS_START });
+  axiosWithAuth()
+      .get("https://expat-backend.herokuapp.com/posts")
+      .then(res => {
+          console.log("GOT POSTS DATA!", res.data);
+          // DOUBLE CHECK PAYLOAD
+          dispatch({ type: GET_POSTS_SUCCESS, payload: res.data});
+      })
+      .catch(err => {
+          dispatch({ type: GET_POSTS_FAIL, payload: err.response });
+      });
+};
+
+
