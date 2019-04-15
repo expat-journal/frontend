@@ -10,10 +10,10 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
 // Reducers
-import rootReducer from './reducers';
+import rootReducer from "./reducers";
 
 // Components
-import { App } from './components';
+import App from './components/App';
 
 // Styles
 import './index.css';
