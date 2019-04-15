@@ -32,9 +32,10 @@ export const registerUser = credentials => dispatch => {
   axios
     .post("https://expat-backend.herokuapp.com/users/register", credentials)
     .then(res => {
-      console.log("data", res);
-      localStorage.setItem("token", res.data.payload);
-      dispatch({ type: REGISTER_SUCCESS, payload: res.data.payload });
+      // localStorage.setItem("token", res.data);
+      // console.log("data", res.data.payload);
+
+      dispatch({ type: REGISTER_SUCCESS, payload: res.data });
     })
     .catch(err =>
       dispatch({
