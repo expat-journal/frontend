@@ -61,22 +61,22 @@ const rootReducer = (state = initialState, action) => {
         error: "Something went wrong",
         registeringUser: false
       };
-      case GET_POSTS_START:
+    case GET_POSTS_START:
       return {
-          ...state,
-          gettingPosts: true
+        ...state,
+        gettingPosts: true
       };
-      case GET_POSTS_SUCCESS:
+    case GET_POSTS_SUCCESS:
       return {
-          ...state,
-          gettingPosts: false,
-          posts: action.payload
+        ...state,
+        gettingPosts: false,
+        posts: action.payload
       };
-      case GET_POSTS_FAIL:
+    case GET_POSTS_FAIL:
       return {
-          ...state,
-          gettingPosts: false,
-          error: action.payload
+        ...state,
+        gettingPosts: false,
+        error: action.payload
       };
 
     default:

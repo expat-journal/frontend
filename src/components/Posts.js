@@ -27,7 +27,7 @@ class Posts extends React.Component {
           <div key={post.id}>
             <h2>{post.title}</h2>
             <h3>By: {post.user_name}</h3>
-            <img src={post.img_url} alt="To Be Uploaded"/>
+            <img src={post.img_url} alt="To Be Uploaded" />
             <p>{post.description}</p>
             <Link to={`/posts/${post.id}`}>View Full Story</Link>
           </div>
@@ -52,7 +52,6 @@ user_id: 93
 user_name: 
 user_profile_img: null
 */
-
 
 const mapStateToProps = state => ({
   posts: state.posts,
