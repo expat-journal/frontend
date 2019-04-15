@@ -54,7 +54,7 @@ export const GET_POSTS_FAIL = "GET_POSTS_FAIL";
 export const getPosts = () => dispatch => {
   dispatch({ type: GET_POSTS_START });
   axiosWithAuth()
-      .get("https://expat-backend.herokuapp.com/posts")
+      .get("https://expat-backend.herokuapp.com/posts/0")
       .then(res => {
           console.log("GOT POSTS DATA!", res.data);
           // DOUBLE CHECK PAYLOAD
