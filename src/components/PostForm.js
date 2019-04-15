@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-
-export default class PostForm extends Component {
+import { connect } from "react-redux";
+import { newPost } from "../actions/index";
+class PostForm extends Component {
   state = {
     title: "",
     description: "",
@@ -14,11 +15,14 @@ export default class PostForm extends Component {
     });
   };
 
-  addPost = e => {
+  addNewPost = e => {
     e.preventDefault();
+    this.props.newPost(this.state);
     this.setState({
-      user_name: "",
-      password: ""
+      title: "",
+      description: "",
+      story: "",
+      img_url: ""
     });
   };
 
@@ -27,7 +31,7 @@ export default class PostForm extends Component {
     return (
       <div>
         <h1> Add New Post </h1>
-        <form>
+        <form onSubmit={this.addNewPost}>
           <input
             type="text"
             name="title"
@@ -44,14 +48,14 @@ export default class PostForm extends Component {
           />
           <input
             type="text"
-            name="story"
+            name="img_url"
             value={img_url}
             placeholder="Image"
             onChange={this.changeHandler}
           />
           <textarea
             type="text"
-            name="img_url"
+            name="story"
             value={story}
             placeholder="Story"
             onChange={this.changeHandler}
@@ -62,3 +66,14 @@ export default class PostForm extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    posts: state.posts
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { newPost }
+)(PostForm);
