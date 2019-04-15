@@ -1,18 +1,45 @@
+// import action types
+
 import {
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
   REGISTER_START,
   REGISTER_SUCCESS,
   REGISTER_FAILURE
-} from "../actions/index";
+} from "../actions";
+import {} from "../actions";
 
 const initialState = {
-  users: [],
-  error: null,
-  registeringUser: false
+  posts: [],
+  activePost: {},
+  registeringUser: false,
+  loggingIn: false,
+  gettingPosts: false,
+  postingPosts: false,
+  deletingPosts: false,
+  updatingPosts: false,
+  error: null
 };
 
-const reducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    //Register New User
+    case LOGIN_START:
+      return {
+        ...state,
+        loggingIn: true
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        loggingIn: false
+      };
+    case LOGIN_FAIL:
+      return {
+        ...state,
+        loggingIn: false,
+        error: action.payload
+      };
     case REGISTER_START:
       return {
         ...state,
@@ -38,4 +65,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default rootReducer;
