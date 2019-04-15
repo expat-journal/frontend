@@ -14,8 +14,8 @@ export const login = credentials => dispatch => {
     .then(res => {
       console.log("POST Req Approved!", res.data);
       // DOUBLE CHECK PAYLOAD
-      localStorage.setItem("token", res.data.payload);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload });
+      localStorage.setItem("token", res.data.token);
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data.token });
     })
     .catch(err => {
       console.log("CAN'T LOG IN");
@@ -32,7 +32,7 @@ export const registerUser = credentials => dispatch => {
   axios
     .post("https://expat-backend.herokuapp.com/users/register", credentials)
     .then(res => {
-      console.log("data", res);
+      console.log("data", res.data);
       localStorage.setItem("token", res.data.payload);
       dispatch({ type: REGISTER_SUCCESS, payload: res.data.payload });
     })

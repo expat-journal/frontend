@@ -1,16 +1,14 @@
-// Class component for CDM
-
 import React from "react";
 //import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-//import { getPosts } from "../actions";
+import { getPosts } from "../actions";
 
 class Posts extends React.Component {
-//   componentDidMount() {
-//     // invoke getPosts action here
-//     this.props.getPosts();
-//   }
+  componentDidMount() {
+    // invoke getPosts action here
+    this.props.getPosts();
+  }
 
   render() {
     return (
@@ -35,6 +33,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { /*getPosts*/ }
+    { getPosts }
   )(Posts)
 );
