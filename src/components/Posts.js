@@ -4,6 +4,9 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getPosts } from "../actions";
 
+// Components
+import SearchBar from "./SearchBar";
+
 class Posts extends React.Component {
   componentDidMount() {
     // invoke getPosts action here
@@ -21,6 +24,7 @@ class Posts extends React.Component {
     }
     return (
       <div className="container story-list-container">
+        <SearchBar/>
         <h1>Stories of our Travelers</h1>
         <Link to="/post-form">Submit Your Story</Link>
         {this.props.posts.map(post => (

@@ -23,7 +23,7 @@ class App extends Component {
           <Link to="/posts">Posts</Link>
           <Link to="/post-form">Post Your Story</Link>
         </nav>
-        <h2>Please Register or Login to Your Account to View Posts</h2>
+        {/* <h2>Please Register or Login to Your Account to View Posts</h2> */}
         <Route path="/login" component={LoginPage} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute path="/posts" component={Posts} />
