@@ -11,22 +11,21 @@ import {
   NEW_POST_START,
   NEW_POST_SUCCESS,
   NEW_POST_FAILURE,
-  GET_USERS_START,
-  GET_USERS_SUCCESS,
-  GET_USERS_FAILURE
+  GET_POST_ID_START,
+  GET_POST_ID_SUCCESS,
+  GET_POST_ID_FAILURE
 } from "../actions";
 
 const initialState = {
   posts: [],
   activePost: {},
-  users: [],
   registeringUser: false,
   loggingIn: false,
   gettingPosts: false,
+  gettingPost: false,
   postingPosts: false,
   deletingPosts: false,
   updatingPosts: false,
-  getUsers: false,
   error: null
 };
 
@@ -58,7 +57,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         error: null,
-        registeringUser: false,
+        registeringUser: true,
         users: action.payload
       };
     case REGISTER_FAILURE:
@@ -104,26 +103,25 @@ const rootReducer = (state = initialState, action) => {
         error: "Something went wrong",
         postingPosts: false
       };
-    case GET_USERS_START:
+    case GET_POST_ID_START:
       return {
         ...state,
         error: null,
-        user: [],
-        getUsers: true
+        gettingPost: true
       };
-    case GET_USERS_SUCCESS:
+
+    case GET_POST_ID_SUCCESS:
       return {
         ...state,
         error: null,
-        users: action.payload,
-        getUsers: false
+        posts: action.payload,
+        gettingPost: false
       };
-    case GET_USERS_FAILURE:
+    case GET_POST_ID_FAILURE:
       return {
         ...state,
         error: "Something went wrong",
-        users: [],
-        getUsers: false
+        gettingPost: false
       };
     default:
       return state;

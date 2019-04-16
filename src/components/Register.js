@@ -18,12 +18,7 @@ class Register extends Component {
 
   registerUser = e => {
     e.preventDefault();
-    if (this.state.user_name) {
-    } else {
-      this.props.registerUser(this.state).then(() => {
-        this.props.history.push("/login");
-      });
-    }
+    this.props.registerUser(this.state);
   };
 
   render() {
@@ -51,6 +46,10 @@ class Register extends Component {
             onChange={this.changeHandler}
           />
           <button>Submit</button>
+
+          {this.state.registeringUser ? (
+            <p>You have successfully registered!</p>
+          ) : null}
         </form>
       </div>
     );
@@ -59,7 +58,7 @@ class Register extends Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.users
+    registeringUser: state.registeringUser
   };
 };
 
