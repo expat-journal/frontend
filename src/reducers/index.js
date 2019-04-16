@@ -18,6 +18,7 @@ import {
 
 const initialState = {
   posts: [],
+  post: {},
   activePost: {},
   registeringUser: false,
   loggingIn: false,
@@ -26,7 +27,8 @@ const initialState = {
   postingPosts: false,
   deletingPosts: false,
   updatingPosts: false,
-  error: null
+  error: null,
+  activeUser: {}
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -39,13 +41,15 @@ const rootReducer = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        loggingIn: false
+        loggingIn: false,
+        activeUser: action.credentials
       };
     case LOGIN_FAIL:
       return {
         ...state,
         loggingIn: false,
-        error: action.payload
+        error: action.payload,
+        activeUser: {}
       };
     case REGISTER_START:
       return {
@@ -114,7 +118,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         error: null,
-        posts: action.payload,
+        post: action.payload,
         gettingPost: false
       };
     case GET_POST_ID_FAILURE:

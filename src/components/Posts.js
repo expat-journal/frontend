@@ -10,9 +10,7 @@ class Posts extends React.Component {
   }
 
   showPost = id => {
-    this.props.getPostID(this.props.posts.id).then(() => {
-      this.props.history.push(`/posts/id/${this.props.posts.id}`);
-    });
+    this.props.history.push(`/posts/${id}`);
   };
   render() {
     // conditional render - if gettingPosts is true

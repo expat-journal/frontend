@@ -1,33 +1,46 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getPosts } from "../actions";
+import { getPostID } from "../actions";
 
 class Post extends React.Component {
   componentDidMount() {
-    // invoke getPosts action here
-    this.props.getPosts();
+    this.props.getPostID(this.props.match.params.id);
   }
 
   render() {
-    console.log(this.props);
-    const singlePost = this.props.posts.find(post => {
-      return `${post.id}` === this.props.match.params.id;
-    });
-    if (!singlePost) {
-      return <p> Testing</p>;
+    if (this.props.match.params.id) {
+      return (
+        <div>
+          <button>Edit</button>
+          <button>Delete</button>
+          <h2>{this.props.post.title}</h2>
+          <p>By: {this.props.post.user_name}</p>
+          <img src={this.props.post.img_url} alt="post illustration" />
+          <p>{this.props.post.story}</p>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h2>{this.props.post.title}</h2>
+          <p>By: {this.props.post.user_name}</p>
+          <img src={this.props.post.img_url} alt="post illustration" />
+          <p>{this.props.post.story}</p>
+        </div>
+      );
     }
-    return <div>{singlePost.id}</div>;
   }
 }
+
 const mapStateToProps = state => ({
-  posts: state.posts,
-  gettingPosts: state.gettingPosts
+  post: state.post,
+  gettingPost: state.gettingPost
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { getPosts }
+    { getPostID }
   )(Post)
 );
