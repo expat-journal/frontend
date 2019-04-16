@@ -20,11 +20,10 @@ class App extends Component {
         <nav>
           <Link to="/register">Register</Link>
           <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
           <Link to="/posts">Posts</Link>
           <Link to="/post-form">Post Your Story</Link>
         </nav>
-        <h2>Welcome to App - Delete this</h2>
+        <h2>Please Register or Login to Your Account to View Posts</h2>
         <Route path="/login" component={LoginPage} />
         <Route exact path="/register" component={Register} />
         <PrivateRoute path="/posts" component={Posts} />

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { registerUser } from "../actions/index";
+
 class Register extends Component {
   state = {
     user_name: "",
     password: ""
   };
+
   // Event handlers
 
   changeHandler = ({ target: { name, value } }) => {
@@ -18,12 +20,10 @@ class Register extends Component {
     e.preventDefault();
     if (this.state.user_name) {
     } else {
-      this.props.registerUser(this.state.user_name, this.state.password);
+      this.props.registerUser(this.state).then(() => {
+        this.props.history.push("/login");
+      });
     }
-    this.setState({
-      user_name: "",
-      password: ""
-    });
   };
 
   render() {
