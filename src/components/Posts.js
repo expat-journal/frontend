@@ -8,10 +8,38 @@ import { getPosts } from "../actions";
 import SearchBar from "./SearchBar";
 
 class Posts extends React.Component {
+  state = {
+    filteredPost: [], // for search bar
+    searching: false,
+  }
+
   componentDidMount() {
     // invoke getPosts action here
     this.props.getPosts();
+  
+
   }
+
+  // For Search Input
+  filterPostHandler = e => {
+    // const allPosts = this.props.posts;
+    const newPostsData = this.props.posts.filter(post => {
+      if (post.title.includes(e.target.value)) {
+          return post;
+        }
+    });
+
+    if (e.target.value === "") {
+      this.setState({ searching: false, filteredPost: this.props.posts 
+      });
+      console.log("Filtered Posts",
+      this.state.filteredPost);
+    } else {
+      this.setState({ filteredPost: newPostsData, searching: true });
+      console.log("Filtered Posts", this.state.filteredPost);
+    }
+  };
+    
 
   render() {
     // conditional render - if gettingPosts is true
@@ -25,9 +53,13 @@ class Posts extends React.Component {
     return (
       <div className="container story-list-container">
         <SearchBar/>
+        <input
+          onChange={this.filterPostHandler}
+          placeholder="Search..."
+        />
         <h1>Stories of our Travelers</h1>
         <Link to="/post-form">Submit Your Story</Link>
-        {this.props.posts.map(post => (
+        {this.state.filteredPost.map(post => (
           <div key={post.id}>
             <h2>{post.title}</h2>
             <h3>By: {post.user_name}</h3>
