@@ -30,14 +30,15 @@ class LoginPage extends React.Component {
   };
 
   render() {
+    console.log(this.state.activeUser);
     // conditional render - if logginIn is true
-    if (this.props.loggingIn) {
-      return (
-        <div className="container loading-container">
-          <h1>Logging you in...</h1>
-        </div>
-      );
-    }
+    // if (this.props.loggingIn) {
+    //   return (
+    //     <div className="container loading-container">
+    //       <h1>Logging you in...</h1>
+    //     </div>
+    //   );
+    // }
     return (
       <div className="container login-container">
         <h2>Login To View Posts</h2>
@@ -64,7 +65,8 @@ class LoginPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  loggingIn: state.loggingIn
+  loggingIn: state.loggingIn,
+  activeUser: state.activeUser
 });
 
 export default connect(

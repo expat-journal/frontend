@@ -13,7 +13,11 @@ export const login = credentials => dispatch => {
       console.log("POST Req Approved!", res.data);
       // DOUBLE CHECK PAYLOAD
       localStorage.setItem("token", res.data.token);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.token });
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data.token,
+        credentials: res.data.message
+      });
     })
     .catch(err => {
       console.log("CAN'T LOG IN");
