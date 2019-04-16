@@ -5,6 +5,9 @@ import {
   REGISTER_START,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
+  GET_POSTS_START,
+  GET_POSTS_SUCCESS,
+  GET_POSTS_FAIL,
   NEW_POST_START,
   NEW_POST_SUCCESS,
   NEW_POST_FAILURE,
@@ -51,7 +54,6 @@ const rootReducer = (state = initialState, action) => {
         error: null,
         registeringUser: true
       };
-
     case REGISTER_SUCCESS:
       return {
         ...state,
@@ -65,7 +67,23 @@ const rootReducer = (state = initialState, action) => {
         error: "Something went wrong",
         registeringUser: false
       };
-
+    case GET_POSTS_START:
+      return {
+        ...state,
+        gettingPosts: true
+      };
+    case GET_POSTS_SUCCESS:
+      return {
+        ...state,
+        gettingPosts: false,
+        posts: action.payload
+      };
+    case GET_POSTS_FAIL:
+      return {
+        ...state,
+        gettingPosts: false,
+        error: action.payload
+      };
     case NEW_POST_START:
       return {
         ...state,
@@ -93,7 +111,6 @@ const rootReducer = (state = initialState, action) => {
         user: [],
         getUsers: true
       };
-
     case GET_USERS_SUCCESS:
       return {
         ...state,
