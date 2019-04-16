@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
+
 // Components
 import LoginPage from "./LoginPage";
 import Posts from "./Posts";
@@ -9,6 +10,7 @@ import UpdateForm from "./UpdateForm";
 import Register from "./Register";
 import PrivateRoute from "./PrivateRoute"; // redirecting to login for now
 
+// Styles
 import "../styles/App.css";
 
 class App extends Component {

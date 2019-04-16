@@ -1,5 +1,3 @@
-// Class component
-
 import React from "react";
 import { connect } from "react-redux";
 import { login } from "../actions";
@@ -32,6 +30,14 @@ class LoginPage extends React.Component {
   };
 
   render() {
+    // conditional render - if logginIn is true
+    if (this.props.loggingIn) {
+      return (
+        <div className="container loading-container">
+          <h1>Logging you in...</h1>
+        </div>
+      );
+    }
     return (
       <div className="container login-container">
         <h2>Login To View Posts</h2>
@@ -57,7 +63,11 @@ class LoginPage extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  loggingIn: state.loggingIn
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { login }
 )(LoginPage);

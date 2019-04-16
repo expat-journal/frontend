@@ -54,7 +54,6 @@ const rootReducer = (state = initialState, action) => {
         error: null,
         registeringUser: true
       };
-
     case REGISTER_SUCCESS:
       return {
         ...state,
@@ -85,7 +84,6 @@ const rootReducer = (state = initialState, action) => {
         gettingPosts: false,
         error: action.payload
       };
-
     case NEW_POST_START:
       return {
         ...state,
@@ -113,7 +111,6 @@ const rootReducer = (state = initialState, action) => {
         user: [],
         getUsers: true
       };
-
     case GET_USERS_SUCCESS:
       return {
         ...state,
