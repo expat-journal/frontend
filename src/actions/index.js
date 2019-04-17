@@ -29,7 +29,11 @@ export {
   UPDATE_POST_FAILURE,
   updatePost,
   SET_ACTIVE_POST,
-  setActivePost
+  setActivePost,
+  DELETE_POST_START,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAILURE,
+  deletePost
 } from "./postsData";
 
 export {

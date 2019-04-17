@@ -87,12 +87,12 @@ export const UPDATE_POST_START = "UPDATE_POST_START";
 export const UPDATE_POST_SUCCESS = "UPDATE_POST_SUCCESS";
 export const UPDATE_POST_FAILURE = "UPDATE_POST_FAILURE";
 
-export const updatePost = ({ id }) => dispatch => {
+export const updatePost = (post) => dispatch => {
   dispatch({ type: UPDATE_POST_START });
   return axiosWithAuth()
-    .get(`https://expat-backend.herokuapp.com/posts/`, { id })
+    .put(`https://expat-backend.herokuapp.com/posts/`, post)
     .then(res => {
-      console.log("From getComments:", res.data);
+      console.log("From updatePost:", res.data);
       dispatch({ type: UPDATE_POST_SUCCESS, payload: res.data });
     })
     .catch(err =>
@@ -108,3 +108,23 @@ export const SET_ACTIVE_POST = "SET_ACTIVE_POST";
 export const setActivePost = post => dispatch => {
   dispatch({ type: SET_ACTIVE_POST, payload: post });
 };
+
+
+// deletePost action for Post.js
+export const DELETE_POST_START = "DELETE_POST_START";
+export const DELETE_POST_SUCCESS = "DELETE_POST_SUCCESS";
+export const DELETE_POST_FAILURE = "DELETE_POST_FAILURE";
+
+export const deletePost = id => dispatch => {
+  dispatch ({ type: DELETE_POST_START })
+  return axiosWithAuth()
+  .delete(`https://expat-backend.herokuapp.com/posts/${id}`)
+  .then(res => {
+    console.log("POST DELETED!");
+    dispatch({ type: DELETE_POST_SUCCESS, payload: res.data });
+  })
+  .catch(err => {
+    dispatch({ type: DELETE_POST_FAILURE });
+  })   
+}
+ 

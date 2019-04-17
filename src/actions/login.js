@@ -1,4 +1,6 @@
 import axios from "axios";
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
 
 // login action suite LoginPage.js
 export const LOGIN_START = "LOGIN_START";
@@ -12,9 +14,12 @@ export const login = credentials => dispatch => {
     .then(res => {
       console.log("POST Req Approved!", res.data);
       // DOUBLE CHECK PAYLOAD
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", res.data.user_name);
-      localStorage.setItem("user_id", res.data.id);
+      const token = cryptr.encrypt("token");
+      const user = cryptr.encrypt("user");
+      const user_id = cryptr.encrypt("user_id")
+      localStorage.setItem( token, res.data.token);
+      localStorage.setItem(  user,  cryptr.encrypt(res.data.user_name));
+      localStorage.setItem(  user_id,  cryptr.encrypt(res.data.id));
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data.token,

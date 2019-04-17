@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import { updatePost } from "../actions/index";
 class UpdateForm extends Component {
   state = {
-    title: this.props.activePost.title
-    // description,
-    // story,
-    // img_url,
-    // city,
-    // state,
-    // country
+    id: this.props.activePost.id,
+    title: this.props.activePost.title,
+    description: this.props.activePost.description,
+    story: this.props.activePost.story,
+    img_url: this.props.activePost.img_url,
+    city: this.props.activePost.city,
+    state: this.props.activePost.state,
+    country: this.props.activePost.country,
   };
 
   changeHandler = ({ target: { name, value } }) => {
@@ -18,15 +19,10 @@ class UpdateForm extends Component {
     });
   };
 
-  editNewPost = e => {
+  updatePost = e => {
     e.preventDefault();
-    this.props.newPost(this.state);
-    this.setState({
-      title: "",
-      description: "",
-      story: "",
-      img_url: ""
-    });
+    this.props.updatePost(this.state);
+    this.props.history.push("/posts");
   };
 
   render() {
@@ -42,7 +38,7 @@ class UpdateForm extends Component {
     return (
       <div>
         <h1> Edit Post </h1>
-        <form onSubmit={this.addNewPost}>
+        <form onSubmit={this.updatePost}>
           <input
             type="text"
             name="title"
@@ -92,7 +88,7 @@ class UpdateForm extends Component {
             placeholder="Story"
             onChange={this.changeHandler}
           />
-          <button> Add Post </button>
+          <button> Update Post </button>
         </form>
       </div>
     );
@@ -108,5 +104,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  {updatePost}
 )(UpdateForm);

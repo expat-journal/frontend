@@ -21,15 +21,7 @@ class PostForm extends Component {
   addNewPost = e => {
     e.preventDefault();
     this.props.newPost(this.state);
-    this.setState({
-      title: "",
-      description: "",
-      story: "",
-      img_url: "",
-      city: "",
-      state: "",
-      country: ""
-    });
+    this.props.history.push('/user/:id')
   };
 
   render() {

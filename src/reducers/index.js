@@ -26,7 +26,13 @@ import {
   UPDATE_USER_START,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_FAILURE,
-  SET_ACTIVE_POST
+  SET_ACTIVE_POST,
+  UPDATE_POST_START,
+  UPDATE_POST_SUCCESS,
+  UPDATE_POST_FAILURE,
+  DELETE_POST_START,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAILURE,
 } from "../actions";
 
 const initialState = {
@@ -233,12 +239,42 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         activePost: action.payload
       };
-      // case UP:
-      //   const posts = this.state.posts.map(p);
+      case UPDATE_POST_SUCCESS:
+        const posts = this.state.posts.map(post => {
+          if(post.id === action.payload.id){
+            const post = {
+              ...action.payload
+            }
+            return post;
+          }
+          return post;
+        })
+        return {
+          ...state, 
+          posts: [...posts]
+        };
 
       return {
         ...state
       };
+
+    case DELETE_POST_START:
+    return {
+      ...state,
+      deletingPost: true,
+    };
+    case DELETE_POST_SUCCESS:
+    return {
+      ...state,
+      posts: action.payload,
+      deletingPost: false,
+    };
+    case DELETE_POST_FAILURE:
+    return {
+      ...state,
+      error: action.payload,
+      deletingPost: false,
+    };
     default:
       return state;
   }
