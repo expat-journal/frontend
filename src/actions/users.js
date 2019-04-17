@@ -29,11 +29,30 @@ export const getUserPost = id => dispatch => {
   axiosWithAuth()
     .get(`https://expat-backend.herokuapp.com/users/posts/${id}`)
     .then(res => {
-      console.log("GOT USER", res.data);
+      console.log("GOT USER's Posts", res.data);
       // DOUBLE CHECK PAYLOAD
       dispatch({ type: GET_USER_POST_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: GET_USER_POST_FAILURE, payload: err.response });
+    });
+};
+
+// updateUser action suite for Users.js
+export const UPDATE_USER_START = "UPDATE_USER_START";
+export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
+export const UPDATE_USER_FAILURE = "UPDATE_USER_FAILURE";
+
+export const updateUser = id => dispatch => {
+  dispatch({ type: UPDATE_USER_START });
+  axiosWithAuth()
+    .put(`https://expat-backend.herokuapp.com/users${id}`)
+    .then(res => {
+      console.log("GOT USER To Edit!", res.data);
+      // DOUBLE CHECK PAYLOAD
+      dispatch({ type: UPDATE_USER_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: UPDATE_USER_FAILURE, payload: err.response });
     });
 };
