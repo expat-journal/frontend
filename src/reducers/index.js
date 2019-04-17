@@ -22,7 +22,10 @@ import {
   GET_USER_FAILURE,
   GET_USER_POST_START,
   GET_USER_POST_SUCCESS,
-  GET_USER_POST_FAILURE
+  GET_USER_POST_FAILURE,
+  NEW_COMMENT_START,
+  NEW_COMMENT_SUCCESS,
+  NEW_COMMENT_FAILURE,
 } from "../actions";
 
 const initialState = {
@@ -43,7 +46,8 @@ const initialState = {
   registeredUser: {},
   userRegistered: false,
   userPost: {},
-  gettingUserPost: false
+  gettingUserPost: false,
+  postingComment: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -200,6 +204,23 @@ const rootReducer = (state = initialState, action) => {
         error: "Something went wrong",
         gettingUser: false,
         gettingUserPost: {}
+      };
+    case NEW_COMMENT_START:
+      return {
+        ...state,
+        postingComment: true,
+        error: null,
+      };
+    case NEW_COMMENT_SUCCESS:
+      return {
+        ...state,
+        comments: action.payload,
+        postingComment: false,
+      };
+    case NEW_COMMENT_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;

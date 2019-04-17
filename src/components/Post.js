@@ -26,6 +26,8 @@ class Post extends React.Component {
     });
   };
 
+  // invoke newComment function
+
   render() {
     const postId = this.props.post.user_id;
     const userId = Number(localStorage.getItem("user_id"));
