@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { getPosts } from "../actions";
-
+import { getPosts, getPostID } from "../actions";
 class Posts extends React.Component {
   state = {
     filteredPost: [], // for search bar
@@ -33,6 +32,9 @@ class Posts extends React.Component {
     }
   }
 
+  showPost = id => {
+    this.props.history.push(`/posts/${id}`);
+  };
   render() {
     const mappedPosts =
       this.state.filteredPost.length > 0
@@ -59,7 +61,9 @@ class Posts extends React.Component {
             <h3>By: {post.user_name}</h3>
             <img src={post.img_url} alt="To Be Uploaded" />
             <p>{post.description}</p>
-            <Link to={`/posts/${post.id}`}>View Full Story</Link>
+            <button onClick={() => this.showPost(post.id)}>
+              View Full Story
+            </button>
           </div>
         ))}
 
@@ -95,6 +99,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { getPosts }
+    { getPosts, getPostID }
   )(Posts)
 );

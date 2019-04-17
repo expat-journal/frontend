@@ -26,7 +26,7 @@ class App extends Component {
         {/* <h2>Please Register or Login to Your Account to View Posts</h2> */}
         <Route path="/login" component={LoginPage} />
         <Route exact path="/register" component={Register} />
-        <PrivateRoute path="/posts" component={Posts} />
+        <PrivateRoute exact path="/posts" component={Posts} />
         <PrivateRoute path="/posts/:id" component={Post} />
         <PrivateRoute path="/post-form" component={PostForm} />
         <PrivateRoute path="/update-form" component={UpdateForm} />
