@@ -3,7 +3,45 @@
 }
 
 .App nav {
+    display: -webkit-flex;
+    background-color: #80808026;
+    padding: 0 1rem;
+    border-radius: 10px;
     display: flex;
+    -webkit-justify-content: space-evenly;
     justify-content: space-evenly;
     margin-bottom: 20px;
+}
+
+.App nav a {
+    color: lightgray;
+    text-decoration: none;
+    font-size: 2rem;
+    transition: all .5s;
+}
+
+.nav-button {
+    padding: 2rem;
+}
+
+.nav-button:hover {
+    background-color: #0000004d;
+}
+
+.nav-button:hover > a {
+    color: white;
+    transform: scale(1.5);
+}
+
+
+.background {
+    background-image: linear-gradient(to bottom right, #00000091, #000000), url("../media/tony-webster-97532-unsplash.jpg");
+    background-size: cover;
+    background-position: bottom;
+    max-height: 100vh;
+    max-width: 100vw;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: -2;
 }
