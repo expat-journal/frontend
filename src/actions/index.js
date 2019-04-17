@@ -5,7 +5,12 @@ export {
   registerUser
 } from "./register";
 
-export { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL, login } from "./login";
+export { 
+  LOGIN_START, 
+  LOGIN_SUCCESS, 
+  LOGIN_FAIL, 
+  login 
+} from "./login";
 
 export {
   GET_POSTS_START,
@@ -23,7 +28,11 @@ export {
   GET_COMMENTS_START,
   GET_COMMENTS_SUCCESS,
   GET_COMMENTS_FAILURE,
-  getComments
+  getComments,
+  NEW_COMMENT_START,
+  NEW_COMMENT_SUCCESS,
+  NEW_COMMENT_FAILURE,
+  newComment,
 } from "./postsData";
 
 export {

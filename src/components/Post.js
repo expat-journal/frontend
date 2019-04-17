@@ -1,17 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getPostID, getComments } from "../actions";
+import { getPostID, getComments, newComment } from "../actions";
 
 class Post extends React.Component {
   state = {
-    likesCounter: 0
+    likesCounter: 0,
+    newComment: {
+      comment: "",
+      post_id: ""
+    }
   };
 
   componentDidMount() {
     this.props.getPostID(this.props.match.params.id);
-    console.log("Active User:", this.props.activeUser);
-
     this.props.getComments(this.props.match.params.id);
   }
 
@@ -21,6 +23,29 @@ class Post extends React.Component {
       return {
         likesCounter: prevState.likesCounter + 1
       };
+    });
+  };
+
+  // event handler for adding comment
+  handleChanges = e => {
+    this.setState({
+      newComment: {
+        ...this.state.newComment,
+        [e.target.name]: e.target.value,
+        post_id: this.props.post.id
+      }
+    });
+  };
+
+  // onSubmit event handler for adding comment - invoke newComment function
+  submitComment = e => {
+    e.preventDefault();
+    this.props.newComment(this.state.newComment);
+    this.setState({
+      newComment: {
+        comment: "",
+        post_id: ""
+      }
     });
   };
 
@@ -89,6 +114,16 @@ class Post extends React.Component {
                 </p>
               </div>
             ))}
+            <form onSubmit={this.submitComment}>
+              <input
+                type="text"
+                name="comment"
+                value={this.state.newComment.comment}
+                onChange={this.handleChanges}
+                placeholder="Write your comment"
+              />
+              <button>Add</button>
+            </form>
           </div>
         </div>
       );
@@ -97,7 +132,7 @@ class Post extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log("New! Comments on mSTP:", state.comments);
+  console.log("Post:", state.post);
   return {
     post: state.post,
     comments: state.comments,
@@ -109,6 +144,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { getPostID, getComments }
+    { getPostID, getComments, newComment }
   )(Post)
 );
