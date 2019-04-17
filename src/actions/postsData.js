@@ -60,24 +60,3 @@ export const getPostID = id => dispatch => {
       })
     );
 };
-
-// getCommentID action for Comments.js
-export const ADD_COMMENT_START = "ADD_COMMENT_START";
-export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
-export const ADD_COMMENT_FAILURE = "ADD_COMMENT_FAILURE";
-
-export const addComment = comment => dispatch => {
-  dispatch({ type: ADD_COMMENT_START });
-  return axiosWithAuth()
-    .post("https://expat-backend.herokuapp.com/comments", comment)
-    .then(res => {
-      console.log(res.data);
-      dispatch({ type: ADD_COMMENT_SUCCESS, payload: res.data });
-    })
-    .catch(err =>
-      dispatch({
-        type: ADD_COMMENT_FAILURE,
-        payload: err
-      })
-    );
-};

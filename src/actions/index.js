@@ -19,11 +19,7 @@ export {
   GET_POST_ID_START,
   GET_POST_ID_SUCCESS,
   GET_POST_ID_FAILURE,
-  getPostID,
-  ADD_COMMENT_START,
-  ADD_COMMENT_SUCCESS,
-  ADD_COMMENT_FAILURE,
-  addComment
+  getPostID
 } from "./postsData";
 
 export {

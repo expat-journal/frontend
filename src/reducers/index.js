@@ -16,10 +16,7 @@ import {
   GET_POST_ID_FAILURE,
   GET_USER_START,
   GET_USER_SUCCESS,
-  GET_USER_FAILURE,
-  ADD_COMMENT_START,
-  ADD_COMMENT_SUCCESS,
-  ADD_COMMENT_FAILURE
+  GET_USER_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -37,9 +34,7 @@ const initialState = {
   gettingUser: false,
   activeUser: {},
   registeredUser: {},
-  userRegistered: false,
-  addingComment: false,
-  comment: {}
+  userRegistered: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -140,26 +135,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         error: "Something went wrong",
         gettingPost: false
-      };
-    case ADD_COMMENT_START:
-      return {
-        ...state,
-        error: null,
-        addingComment: true
-      };
-
-    case ADD_COMMENT_SUCCESS:
-      return {
-        ...state,
-        error: null,
-        comments: action.payload,
-        addingComment: false
-      };
-    case ADD_COMMENT_FAILURE:
-      return {
-        ...state,
-        error: "Something went wrong",
-        addingComment: false
       };
     case GET_USER_START:
       return {
