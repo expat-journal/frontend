@@ -31,7 +31,9 @@ class Users extends Component {
 
   editUser = e => {
     e.preventDefault();
-    this.props.updateUser(this.props.updateUser.id);
+    let id = Number(localStorage.getItem("user_id"));
+    this.props.updateUser(id);
+
     this.setState({
       ...this.state,
       credentials: {
@@ -46,7 +48,7 @@ class Users extends Component {
     this.props.history.push(`/posts/${id}`);
   };
   render() {
-    console.log(this.state);
+    console.log(this.props.userProfile.id);
     return (
       <div className="user-profile">
         <p>{this.props.userProfile.user_name}</p>
@@ -73,7 +75,9 @@ class Users extends Component {
         <div className="user-profile-posts">
           {this.props.userPost.map(user => (
             <div key={user.id}>
-              <button onClick={() => this.goToPost(user.id)}>Edit Post?</button>
+              <button onClick={() => this.goToPost(user.id)}>
+                Edit/Delete Post?
+              </button>
               <h2>{user.title}</h2>
               <img src={user.img_url} alt="my post illustration" />
               <p>

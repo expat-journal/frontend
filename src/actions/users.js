@@ -43,10 +43,10 @@ export const UPDATE_USER_START = "UPDATE_USER_START";
 export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
 export const UPDATE_USER_FAILURE = "UPDATE_USER_FAILURE";
 
-export const updateUser = id => dispatch => {
+export const updateUser = () => dispatch => {
   dispatch({ type: UPDATE_USER_START });
-  axiosWithAuth()
-    .put(`https://expat-backend.herokuapp.com/users${id}`)
+  return axiosWithAuth()
+    .put("https://expat-backend.herokuapp.com/users")
     .then(res => {
       console.log("GOT USER To Edit!", res.data);
       // DOUBLE CHECK PAYLOAD
