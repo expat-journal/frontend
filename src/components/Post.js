@@ -52,9 +52,10 @@ class Post extends React.Component {
     this.props.newComment(this.state.newComment);
     this.setState({ 
       newComment: { 
-        comment: "" 
+        comment: "" ,
+        post_id: ""
       }
-    })
+    });
   }
 
   render() {
