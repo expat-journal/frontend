@@ -1,17 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getPostID, getComments } from "../actions";
+import { getPostID, getComments, newComment } from "../actions";
 
 class Post extends React.Component {
   state = {
-    likesCounter: 0
+    likesCounter: 0,
+    newComment: {
+      text: "",
+      post_id: ""
+    }
   };
 
   componentDidMount() {
     this.props.getPostID(this.props.match.params.id);
-    console.log("Active User:", this.props.activeUser);
-
     this.props.getComments(this.props.match.params.id);
   }
 
@@ -89,6 +91,13 @@ class Post extends React.Component {
                 </p>
               </div>
             ))}
+            <form onSubmit={}>
+              <input
+                onChange={}
+                placeholder="Write your comment"
+              />
+              <button>Add</button>
+            </form>
           </div>
         </div>
       );
@@ -109,6 +118,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { getPostID, getComments }
+    { getPostID, getComments, newComment }
   )(Post)
 );
