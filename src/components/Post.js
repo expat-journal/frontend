@@ -68,7 +68,6 @@ class Post extends React.Component {
           <h2>{title}</h2>
           <p>By: {user_name}</p>
           <img src={img_url} alt="post illustration" />
-
           <span>
             <i className="far fa-heart" onClick={this.increaseLikes} />
             {this.state.likesCounter} likes
