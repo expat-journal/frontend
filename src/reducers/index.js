@@ -26,6 +26,16 @@ import {
   NEW_COMMENT_START,
   NEW_COMMENT_SUCCESS,
   NEW_COMMENT_FAILURE,
+  UPDATE_USER_START,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILURE,
+  SET_ACTIVE_POST,
+  UPDATE_POST_START,
+  UPDATE_POST_SUCCESS,
+  UPDATE_POST_FAILURE,
+  DELETE_POST_START,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAILURE,
 } from "../actions";
 
 const initialState = {
@@ -45,8 +55,11 @@ const initialState = {
   activeUser: {},
   registeredUser: {},
   userRegistered: false,
-  userPost: {},
+  userPost: [],
+  userProfile: {},
   gettingUserPost: false,
+  userToUpdate: {},
+  updateUser: false,
   postingComment: false,
 };
 
@@ -170,12 +183,11 @@ const rootReducer = (state = initialState, action) => {
         error: null,
         gettingUser: true
       };
-
     case GET_USER_SUCCESS:
       return {
         ...state,
         error: null,
-        activeUser: action.credentials,
+        userProfile: action.payload,
         gettingUser: false
       };
     case GET_USER_FAILURE:
@@ -185,6 +197,27 @@ const rootReducer = (state = initialState, action) => {
         gettingUser: false,
         activeUser: {}
       };
+    case UPDATE_USER_START:
+      return {
+        ...state,
+        error: null,
+        updateUser: true
+      };
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        error: null,
+        userToUpdate: action.payload,
+        updateUser: false
+      };
+    case UPDATE_USER_FAILURE:
+      return {
+        ...state,
+        error: "Something went wrong",
+        updateUser: false,
+        userToUpdate: []
+      };
+
     case GET_USER_POST_START:
       return {
         ...state,
@@ -222,6 +255,47 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
+    case SET_ACTIVE_POST:
+      return {
+        ...state,
+        activePost: action.payload
+      };
+      case UPDATE_POST_SUCCESS:
+        const posts = this.state.posts.map(post => {
+          if(post.id === action.payload.id){
+            const post = {
+              ...action.payload
+            }
+            return post;
+          }
+          return post;
+        })
+        return {
+          ...state, 
+          posts: [...posts]
+        };
+
+      return {
+        ...state
+      };
+
+    case DELETE_POST_START:
+    return {
+      ...state,
+      deletingPost: true,
+    };
+    case DELETE_POST_SUCCESS:
+    return {
+      ...state,
+      posts: action.payload,
+      deletingPost: false,
+    };
+    case DELETE_POST_FAILURE:
+    return {
+      ...state,
+      error: action.payload,
+      deletingPost: false,
+    };
     default:
       return state;
   }

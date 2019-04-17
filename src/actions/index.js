@@ -33,6 +33,16 @@ export {
   NEW_COMMENT_SUCCESS,
   NEW_COMMENT_FAILURE,
   newComment,
+  UPDATE_POST_START,
+  UPDATE_POST_SUCCESS,
+  UPDATE_POST_FAILURE,
+  updatePost,
+  SET_ACTIVE_POST,
+  setActivePost,
+  DELETE_POST_START,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAILURE,
+  deletePost
 } from "./postsData";
 
 export {
@@ -43,5 +53,9 @@ export {
   GET_USER_POST_START,
   GET_USER_POST_SUCCESS,
   GET_USER_POST_FAILURE,
-  getUserPost
+  getUserPost,
+  UPDATE_USER_START,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILURE,
+  updateUser
 } from "./users";

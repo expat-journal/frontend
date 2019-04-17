@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getPosts } from "../actions";
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotalySecretKey');
 class Posts extends React.Component {
   state = {
     filteredPost: [], // for search bar
@@ -32,6 +34,7 @@ class Posts extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.posts !== this.props.posts) {
+
       this.setState({ posts: this.props.posts });
     }
   }
@@ -57,8 +60,21 @@ class Posts extends React.Component {
         </div>
       );
     }
+    const length = localStorage.length;
+    let userId = null;
+    for(let i = 0; i < length; i++){
+      const key = localStorage.key(i);
+      try {
+        const decryptKey = cryptr.decrypt(key);
+        if (decryptKey === "user_id"){
+          const encryptedUserId = localStorage.getItem(key);
+          userId = Number(cryptr.decrypt(encryptedUserId));
+        }
+      }catch{
 
-    let userId = Number(localStorage.getItem("user_id"));
+      }
+      
+    }
     console.log("User", userId);
 
     return (
