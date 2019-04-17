@@ -22,5 +22,9 @@ export {
   GET_POST_ID_START,
   GET_POST_ID_SUCCESS,
   GET_POST_ID_FAILURE,
-  getPostID
+  getPostID,
+  GET_COMMENTS_START,
+  GET_COMMENTS_SUCCESS,
+  GET_COMMENTS_FAILURE,
+  getComments,
 } from "./postData";
