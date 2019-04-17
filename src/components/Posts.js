@@ -18,7 +18,11 @@ class Posts extends React.Component {
   // For Search Bar Input
   filteredPostHandler = e => {
     const newPostsData = this.props.posts.filter(post => {
-      if ((post.state.includes(e.target.value)) || (post.state.includes(e.target.value)) || (post.country.includes(e.target.value))) {
+      if (
+        post.state.includes(e.target.value) ||
+        post.state.includes(e.target.value) ||
+        post.country.includes(e.target.value)
+      ) {
         return post;
       }
     });
@@ -59,8 +63,8 @@ class Posts extends React.Component {
 
     return (
       <div className="container story-list-container">
-        <input 
-          onChange={this.filteredPostHandler} 
+        <input
+          onChange={this.filteredPostHandler}
           placeholder="Search by city, state, or country..."
         />
         <h1>Stories of our Travelers</h1>
@@ -73,7 +77,12 @@ class Posts extends React.Component {
             <h2>{post.title}</h2>
             <h3>By: {post.user_name}</h3>
             <img src={post.img_url} alt="To Be Uploaded" />
-            <span>{post.description} <strong>{post.city}, {post.state}, {post.country}</strong></span>
+            <span>
+              {post.description}{" "}
+              <strong>
+                {post.city}, {post.state}, {post.country}
+              </strong>
+            </span>
             <button onClick={() => this.showPost(post.id)}>
               View Full Story
             </button>
