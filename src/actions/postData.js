@@ -10,12 +10,33 @@ export const getPostID = id => dispatch => {
   return axiosWithAuth()
     .get(`https://expat-backend.herokuapp.com/posts/id/${id}`)
     .then(res => {
-      console.log(res.data);
+      console.log("From getPostID:",res.data);
       dispatch({ type: GET_POST_ID_SUCCESS, payload: res.data });
     })
     .catch(err =>
       dispatch({
         type: GET_POST_ID_FAILURE,
+        payload: err
+      })
+    );
+};
+
+// getComments action for Posts.js
+export const GET_COMMENTS_START = "GET_COMMENTS_START";
+export const GET_COMMENTS_SUCCESS = "GET_COMMENTS_SUCCESS";
+export const GET_COMMENTS_FAILURE = "GET_COMMENTS_FAILURE";
+
+export const getComments = id => dispatch => {
+  dispatch({ type: GET_COMMENTS_START });
+  return axiosWithAuth()
+    .get(`https://expat-backend.herokuapp.com/comments/post_id/${id}`)
+    .then(res => {
+      console.log("From getComments:",res.data);
+      dispatch({ type: GET_COMMENTS_SUCCESS, payload: res.data });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_COMMENTS_FAILURE,
         payload: err
       })
     );

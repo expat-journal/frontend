@@ -13,12 +13,16 @@ import {
   NEW_POST_FAILURE,
   GET_POST_ID_START,
   GET_POST_ID_SUCCESS,
-  GET_POST_ID_FAILURE
+  GET_POST_ID_FAILURE,
+  GET_COMMENTS_START,
+  GET_COMMENTS_SUCCESS,
+  GET_COMMENTS_FAILURE,
 } from "../actions";
 
 const initialState = {
   posts: [],
   post: {},
+  comments: [],
   activePost: {},
   registeringUser: false,
   loggingIn: false,
@@ -42,7 +46,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
-        activeUser: action.credentials
+        activeUser: action.credentials // which is user_name
       };
     case LOGIN_FAIL:
       return {
@@ -127,6 +131,16 @@ const rootReducer = (state = initialState, action) => {
         error: "Something went wrong",
         gettingPost: false
       };
+      case GET_COMMENTS_SUCCESS:
+      return {
+        ...state,
+        comments: action.payload,
+      };
+      case GET_COMMENTS_FAILURE:
+      return {
+        ...state,
+        error: "Something went wrong"
+      }
     default:
       return state;
   }
