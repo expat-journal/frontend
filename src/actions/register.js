@@ -13,7 +13,11 @@ export const registerUser = credentials => dispatch => {
     .then(res => {
       console.log("data", res.data.token);
       localStorage.setItem("token", res.data.token);
-      dispatch({ type: REGISTER_SUCCESS, payload: res.data.token });
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+        user: res.data.user.user_name
+      });
     })
     .catch(err =>
       dispatch({
