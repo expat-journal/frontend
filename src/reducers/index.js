@@ -16,7 +16,10 @@ import {
   GET_POST_ID_FAILURE,
   GET_USER_START,
   GET_USER_SUCCESS,
-  GET_USER_FAILURE
+  GET_USER_FAILURE,
+  GET_USER_POST_START,
+  GET_USER_POST_SUCCESS,
+  GET_USER_POST_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -151,6 +154,26 @@ const rootReducer = (state = initialState, action) => {
         gettingUser: false
       };
     case GET_USER_FAILURE:
+      return {
+        ...state,
+        error: "Something went wrong",
+        gettingUser: false,
+        activeUser: {}
+      };
+    case GET_USER_POST_START:
+      return {
+        ...state,
+        error: null,
+        gettingUser: true
+      };
+    case GET_USER_POST_SUCCESS:
+      return {
+        ...state,
+        error: null,
+        activeUser: action.credentials,
+        gettingUser: false
+      };
+    case GET_USER_POST_FAILURE:
       return {
         ...state,
         error: "Something went wrong",

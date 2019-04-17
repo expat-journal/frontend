@@ -26,5 +26,9 @@ export {
   GET_USER_START,
   GET_USER_SUCCESS,
   GET_USER_FAILURE,
-  getUser
+  getUser,
+  GET_USER_POST_START,
+  GET_USER_POST_SUCCESS,
+  GET_USER_POST_FAILURE,
+  getUserPost
 } from "./users";

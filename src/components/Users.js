@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getUser } from "../actions";
+import { getUser, getUserPost } from "../actions";
 class Users extends Component {
   componentDidMount() {
     this.props.getUser(this.props.match.params.id);
@@ -20,6 +20,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { getUser }
+    { getUser, getUserPost }
   )(Users)
 );
