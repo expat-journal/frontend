@@ -4,54 +4,41 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getPosts } from "../actions";
 
-// Components
-import SearchBar from "./SearchBar";
-
 class Posts extends React.Component {
   state = {
     filteredPost: [], // for search bar
-    posts: [],
-    searching: false,
-  }
+    posts: [], // for search bar
+    searching: false // not in use at the moment
+  };
 
   componentDidMount() {
     // invoke getPosts action here
     this.props.getPosts();
-    // this.setState({filteredPost: this.props.posts })
-  
-
   }
 
-  // For Search Input
+  // For Search Bar Input
   filterPostHandler = e => {
     const newPostsData = this.props.posts.filter(post => {
       if (post.title.includes(e.target.value)) {
-          return post;
-        }
+        return post;
+      }
     });
-    this.setState({ posts: newPostsData, searching: true });
+    this.setState({ filteredPost: newPostsData, searching: true });
     console.log("newPost", newPostsData);
-    // if (e.target.value === "" ) {
-    //   this.setState({ searching: false, filteredPost: this.props.posts 
-    //   });
-    //   console.log("Filtered Posts",
-    //   this.state.filteredPost);
-    // } else {
-    //   this.setState({ filteredPost: newPostsData, searching: true });
-    //   console.log("Filtered Posts", this.state.filteredPost);
-    // }
   };
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.posts !== this.props.posts) {
-      this.setState({ filteredPost: this.props.posts })
+      this.setState({ posts: this.props.posts });
     }
   }
-    
 
   render() {
-    console.log("another anything");
-    const posts = this.state.posts.length > 0 ? this.state.posts : this.state.filteredPost
+    const mappedPosts =
+      this.state.filteredPost.length > 0
+        ? this.state.filteredPost
+        : this.state.posts;
+
     // conditional render - if gettingPosts is true
     if (this.props.gettingPosts) {
       return (
@@ -62,14 +49,11 @@ class Posts extends React.Component {
     }
     return (
       <div className="container story-list-container">
-        <input
-          onChange={this.filterPostHandler}
-          placeholder="Search..."
-        />
+        <input onChange={this.filterPostHandler} placeholder="Search..." />
         <h1>Stories of our Travelers</h1>
         <Link to="/post-form">Submit Your Story</Link>
-        
-        {posts.map(post => (
+
+        {mappedPosts.map(post => (
           <div key={post.id}>
             <h2>{post.title}</h2>
             <h3>By: {post.user_name}</h3>
@@ -78,6 +62,7 @@ class Posts extends React.Component {
             <Link to={`/posts/${post.id}`}>View Full Story</Link>
           </div>
         ))}
+
         <Link to="/post-form">Submit Your Story</Link>
       </div>
     );
@@ -104,8 +89,7 @@ const mapStateToProps = state => {
   return {
     posts: state.posts,
     gettingPosts: state.gettingPosts
-  }
-  
+  };
 };
 
 export default withRouter(
