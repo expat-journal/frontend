@@ -10,38 +10,48 @@ import SearchBar from "./SearchBar";
 class Posts extends React.Component {
   state = {
     filteredPost: [], // for search bar
+    posts: [],
     searching: false,
   }
 
   componentDidMount() {
     // invoke getPosts action here
     this.props.getPosts();
+    // this.setState({filteredPost: this.props.posts })
   
 
   }
 
   // For Search Input
   filterPostHandler = e => {
-    // const allPosts = this.props.posts;
     const newPostsData = this.props.posts.filter(post => {
       if (post.title.includes(e.target.value)) {
           return post;
         }
     });
-
-    if (e.target.value === "") {
-      this.setState({ searching: false, filteredPost: this.props.posts 
-      });
-      console.log("Filtered Posts",
-      this.state.filteredPost);
-    } else {
-      this.setState({ filteredPost: newPostsData, searching: true });
-      console.log("Filtered Posts", this.state.filteredPost);
-    }
+    this.setState({ posts: newPostsData, searching: true });
+    console.log("newPost", newPostsData);
+    // if (e.target.value === "" ) {
+    //   this.setState({ searching: false, filteredPost: this.props.posts 
+    //   });
+    //   console.log("Filtered Posts",
+    //   this.state.filteredPost);
+    // } else {
+    //   this.setState({ filteredPost: newPostsData, searching: true });
+    //   console.log("Filtered Posts", this.state.filteredPost);
+    // }
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.posts !== this.props.posts) {
+      this.setState({ filteredPost: this.props.posts })
+    }
+  }
     
 
   render() {
+    console.log("another anything");
+    const posts = this.state.posts.length > 0 ? this.state.posts : this.state.filteredPost
     // conditional render - if gettingPosts is true
     if (this.props.gettingPosts) {
       return (
@@ -52,14 +62,14 @@ class Posts extends React.Component {
     }
     return (
       <div className="container story-list-container">
-        <SearchBar/>
         <input
           onChange={this.filterPostHandler}
           placeholder="Search..."
         />
         <h1>Stories of our Travelers</h1>
         <Link to="/post-form">Submit Your Story</Link>
-        {this.state.filteredPost.map(post => (
+        
+        {posts.map(post => (
           <div key={post.id}>
             <h2>{post.title}</h2>
             <h3>By: {post.user_name}</h3>
@@ -89,10 +99,14 @@ user_name:
 user_profile_img: null
 */
 
-const mapStateToProps = state => ({
-  posts: state.posts,
-  gettingPosts: state.gettingPosts
-});
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    posts: state.posts,
+    gettingPosts: state.gettingPosts
+  }
+  
+};
 
 export default withRouter(
   connect(
