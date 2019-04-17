@@ -35,7 +35,11 @@ class Post extends React.Component {
           <img src={this.props.post.img_url} alt="post illustration" />
           <span>
             <i className="far fa-heart" onClick={this.increaseLikes} />
-            {this.state.likesCounter} likes
+            {this.state.likesCounter} likes 
+          </span>
+
+          <span>
+            <i className="far fa-comment" /> {this.props.comments.length} comments
           </span>
 
           <p>"{this.props.post.story}"</p>
