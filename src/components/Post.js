@@ -26,15 +26,8 @@ class Post extends React.Component {
     });
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevProps.post.post_id !== this.state.newComment.post_id)
-  // }
-
   // event handler for adding comment
   handleChanges = e => {
-    console.log("anything");
-    console.log(e.target.value);
-
     this.setState({
       newComment: {
         ...this.state.newComment,
@@ -42,21 +35,19 @@ class Post extends React.Component {
         post_id: this.props.post.id
       }
     });
-    console.log(this.state.newComment);
-
   };
 
   // onSubmit event handler for adding comment - invoke newComment function
   submitComment = e => {
     e.preventDefault();
     this.props.newComment(this.state.newComment);
-    this.setState({ 
-      newComment: { 
-        comment: "" ,
+    this.setState({
+      newComment: {
+        comment: "",
         post_id: ""
       }
     });
-  }
+  };
 
   render() {
     const postId = this.props.post.user_id;
