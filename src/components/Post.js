@@ -21,12 +21,12 @@ class Post extends React.Component {
           <h2>{this.props.post.title}</h2>
           <p>By: {this.props.post.user_name}</p>
           <img src={this.props.post.img_url} alt="post illustration" />
-          <p>{this.props.post.story}</p>
+          <p>"{this.props.post.story}"</p>
         
-            <div>
+            <div className="comment-section">
               {this.props.comments.map(comment => (
                   <div key={comment.id}>
-                    <p>{comment.comment}</p>
+                    <p><strong>{comment.user_name} </strong>{comment.comment}</p>
                   </div>
               ))};
             </div>
