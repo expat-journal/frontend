@@ -12,6 +12,10 @@ class Posts extends React.Component {
   showPost = id => {
     this.props.history.push(`/posts/${id}`);
   };
+
+  showUser = id => {
+    this.props.history.push(`/user/${id}`);
+  };
   render() {
     // conditional render - if gettingPosts is true
     if (this.props.gettingPosts) {
@@ -21,10 +25,16 @@ class Posts extends React.Component {
         </div>
       );
     }
+    let userId = Number(localStorage.getItem("user_id"));
+    console.log("User", userId);
+
     return (
       <div className="container story-list-container">
         <h1>Stories of our Travelers</h1>
         <Link to="/post-form">Submit Your Story</Link>
+        <button onClick={() => this.showUser(userId)}>
+          Go to your Profile
+        </button>
         {this.props.posts.map(post => (
           <div key={post.id}>
             <h2>{post.title}</h2>
@@ -59,7 +69,8 @@ user_profile_img: null
 
 const mapStateToProps = state => ({
   posts: state.posts,
-  gettingPosts: state.gettingPosts
+  gettingPosts: state.gettingPosts,
+  activeUser: state.activeUser
 });
 
 export default withRouter(

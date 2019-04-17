@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../actions/index";
 
@@ -19,6 +20,10 @@ class Register extends Component {
   registerUser = e => {
     e.preventDefault();
     this.props.registerUser(this.state);
+    this.setState({
+      user_name: "",
+      password: ""
+    });
   };
 
   render() {
@@ -47,9 +52,12 @@ class Register extends Component {
           />
           <button>Submit</button>
 
-          {this.state.registeringUser ? (
-            <p>You have successfully registered!</p>
-          ) : null}
+          {this.props.userRegistered && (
+            <p>
+              You have successfully registered! {this.props.registeredUser}{" "}
+              Please <Link to="/login">log in</Link>
+            </p>
+          )}
         </form>
       </div>
     );
@@ -58,7 +66,8 @@ class Register extends Component {
 
 const mapStateToProps = state => {
   return {
-    registeringUser: state.registeringUser
+    userRegistered: state.userRegistered,
+    registeredUser: state.registeredUser
   };
 };
 

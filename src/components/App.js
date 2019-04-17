@@ -8,6 +8,7 @@ import Post from "./Post";
 import PostForm from "./PostForm";
 import UpdateForm from "./UpdateForm";
 import Register from "./Register";
+import Users from "./Users";
 import PrivateRoute from "./PrivateRoute"; // redirecting to login for now
 
 // Styles
@@ -29,6 +30,7 @@ class App extends Component {
         <PrivateRoute exact path="/posts" component={Posts} />
         <PrivateRoute path="/posts/:id" component={Post} />
         <PrivateRoute path="/post-form" component={PostForm} />
+        <PrivateRoute exact path="/user/:id" component={Users} />
         <PrivateRoute path="/update-form" component={UpdateForm} />
       </div>
     );

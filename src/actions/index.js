@@ -15,12 +15,20 @@ export {
   NEW_POST_START,
   NEW_POST_SUCCESS,
   NEW_POST_FAILURE,
-  newPost
-} from "./postsData";
-
-export {
+  newPost,
   GET_POST_ID_START,
   GET_POST_ID_SUCCESS,
   GET_POST_ID_FAILURE,
-  getPostID
-} from "./postData";
+  getPostID,
+  ADD_COMMENT_START,
+  ADD_COMMENT_SUCCESS,
+  ADD_COMMENT_FAILURE,
+  addComment
+} from "./postsData";
+
+export {
+  GET_USER_START,
+  GET_USER_SUCCESS,
+  GET_USER_FAILURE,
+  getUser
+} from "./users";

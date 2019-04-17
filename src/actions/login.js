@@ -13,10 +13,13 @@ export const login = credentials => dispatch => {
       console.log("POST Req Approved!", res.data);
       // DOUBLE CHECK PAYLOAD
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", res.data.user_name);
+      localStorage.setItem("user_id", res.data.id);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data.token,
-        credentials: res.data.message
+        credentials: res.data.user_name,
+        user_id: res.data.id
       });
     })
     .catch(err => {

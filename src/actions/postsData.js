@@ -1,6 +1,5 @@
 import axiosWithAuth from "../utils/axiosWithAuth";
 
-
 // getPosts action suite for Posts.js
 export const GET_POSTS_START = "GET_POSTS_START";
 export const GET_POSTS_SUCCESS = "GET_POSTS_SUCCESS";
@@ -31,11 +30,53 @@ export const newPost = post => dispatch => {
     .post("https://expat-backend.herokuapp.com/posts", post)
     .then(res => {
       console.log(res.data);
-      dispatch({ type: NEW_POST_SUCCESS, payload: res.data });
+      dispatch({ type: NEW_POST_SUCCESS, payload: res.data.payload });
     })
     .catch(err =>
       dispatch({
         type: NEW_POST_FAILURE,
+        payload: err
+      })
+    );
+};
+
+// getPostID action for Posts.js
+export const GET_POST_ID_START = "GET_POST_ID_START";
+export const GET_POST_ID_SUCCESS = "GET_POST_ID_SUCCESS";
+export const GET_POST_ID_FAILURE = "GET_POST_ID_FAILURE";
+
+export const getPostID = id => dispatch => {
+  dispatch({ type: GET_POST_ID_START });
+  return axiosWithAuth()
+    .get(`https://expat-backend.herokuapp.com/posts/id/${id}`)
+    .then(res => {
+      console.log(res.data);
+      dispatch({ type: GET_POST_ID_SUCCESS, payload: res.data });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_POST_ID_FAILURE,
+        payload: err
+      })
+    );
+};
+
+// getCommentID action for Comments.js
+export const ADD_COMMENT_START = "ADD_COMMENT_START";
+export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
+export const ADD_COMMENT_FAILURE = "ADD_COMMENT_FAILURE";
+
+export const addComment = comment => dispatch => {
+  dispatch({ type: ADD_COMMENT_START });
+  return axiosWithAuth()
+    .post("https://expat-backend.herokuapp.com/comments", comment)
+    .then(res => {
+      console.log(res.data);
+      dispatch({ type: ADD_COMMENT_SUCCESS, payload: res.data });
+    })
+    .catch(err =>
+      dispatch({
+        type: ADD_COMMENT_FAILURE,
         payload: err
       })
     );
