@@ -68,7 +68,28 @@ class Post extends React.Component {
           <h2>{title}</h2>
           <p>By: {user_name}</p>
           <img src={img_url} alt="post illustration" />
+          <span>
+            <i className="far fa-heart" onClick={this.increaseLikes} />
+            {this.state.likesCounter} likes
+          </span>
+
+          <span>
+            <i className="far fa-comment" /> {this.props.comments.length}{" "}
+            comments
+          </span>
           <p>{story}</p>
+
+          <div className="comment-section">
+            {this.props.comments.map(comment => (
+              <div key={comment.id}>
+                <p>
+                  <strong>{comment.user_name} </strong>
+                  {comment.comment}
+                </p>
+              </div>
+            ))}
+            
+          </div>
         </div>
       );
     }

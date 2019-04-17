@@ -16,14 +16,14 @@ class Posts extends React.Component {
   }
 
   // For Search Bar Input
-  filterPostHandler = e => {
+  filteredPostHandler = e => {
     const newPostsData = this.props.posts.filter(post => {
-      if (post.title.includes(e.target.value)) {
+      if ((post.state.includes(e.target.value)) || (post.state.includes(e.target.value)) || (post.country.includes(e.target.value))) {
         return post;
       }
     });
     this.setState({ filteredPost: newPostsData, searching: true });
-    console.log("newPost", newPostsData);
+    console.log("Filtered Posts", newPostsData);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -53,23 +53,27 @@ class Posts extends React.Component {
         </div>
       );
     }
+
     let userId = Number(localStorage.getItem("user_id"));
     console.log("User", userId);
 
     return (
       <div className="container story-list-container">
-        <input onChange={this.filterPostHandler} placeholder="Search..." />
+        <input 
+          onChange={this.filteredPostHandler} 
+          placeholder="Search by city, state, or country..."
+        />
         <h1>Stories of our Travelers</h1>
         <Link to="/post-form">Submit Your Story</Link>
         <button onClick={() => this.showUser(userId)}>
           Go to your Profile
         </button>
-        {this.props.posts.map(post => (
+        {mappedPosts.map(post => (
           <div key={post.id}>
             <h2>{post.title}</h2>
             <h3>By: {post.user_name}</h3>
             <img src={post.img_url} alt="To Be Uploaded" />
-            <p>{post.description}</p>
+            <span>{post.description} <strong>{post.city}, {post.state}, {post.country}</strong></span>
             <button onClick={() => this.showPost(post.id)}>
               View Full Story
             </button>
