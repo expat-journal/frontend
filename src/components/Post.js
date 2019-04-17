@@ -7,7 +7,7 @@ class Post extends React.Component {
   state = {
     likesCounter: 0,
     newComment: {
-      text: "",
+      comment: "",
       post_id: ""
     }
   };
@@ -26,7 +26,36 @@ class Post extends React.Component {
     });
   };
 
-  // invoke newComment function
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevProps.post.post_id !== this.state.newComment.post_id)
+  // }
+
+  // event handler for adding comment
+  handleChanges = e => {
+    console.log("anything");
+    console.log(e.target.value);
+
+    this.setState({
+      newComment: {
+        ...this.state.newComment,
+        [e.target.name]: e.target.value,
+        post_id: this.props.post.id
+      }
+    });
+    console.log(this.state.newComment);
+
+  };
+
+  // onSubmit event handler for adding comment - invoke newComment function
+  submitComment = e => {
+    e.preventDefault();
+    this.props.newComment(this.state.newComment);
+    this.setState({ 
+      newComment: { 
+        comment: "" 
+      }
+    })
+  }
 
   render() {
     const postId = this.props.post.user_id;
@@ -93,9 +122,12 @@ class Post extends React.Component {
                 </p>
               </div>
             ))}
-            <form onSubmit={}>
+            <form onSubmit={this.submitComment}>
               <input
-                onChange={}
+                type="text"
+                name="comment"
+                value={this.state.newComment.comment}
+                onChange={this.handleChanges}
                 placeholder="Write your comment"
               />
               <button>Add</button>
@@ -108,7 +140,7 @@ class Post extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log("New! Comments on mSTP:", state.comments);
+  console.log("Post:", state.post);
   return {
     post: state.post,
     comments: state.comments,

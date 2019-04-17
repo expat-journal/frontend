@@ -91,11 +91,12 @@ export const NEW_COMMENT_FAILURE = "NEW_COMMENT_FAILURE";
 
 export const newComment = comment => dispatch => {
   dispatch({ type: NEW_COMMENT_START});
+  console.log("Starting adding new comment");
   axiosWithAuth()
   .post("https://expat-backend.herokuapp.com/comments", comment)
   .then(res => {
     console.log("Post Comment Accepted:", res.data);
-    dispatch({ type: NEW_COMMENT_SUCCESS, payload: res.data.payload });
+    dispatch({ type: NEW_COMMENT_SUCCESS, payload: res.data });
   })
   .catch(err => {
     dispatch({ type: NEW_COMMENT_FAILURE, payload: err.response });
