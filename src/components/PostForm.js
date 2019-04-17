@@ -6,7 +6,10 @@ class PostForm extends Component {
     title: "",
     description: "",
     story: "",
-    img_url: ""
+    img_url: "",
+    city: "",
+    state: "",
+    country: ""
   };
 
   changeHandler = ({ target: { name, value } }) => {
@@ -22,12 +25,23 @@ class PostForm extends Component {
       title: "",
       description: "",
       story: "",
-      img_url: ""
+      img_url: "",
+      city: "",
+      state: "",
+      country: ""
     });
   };
 
   render() {
-    const { title, description, story, img_url } = this.state;
+    const {
+      title,
+      description,
+      story,
+      img_url,
+      city,
+      state,
+      country
+    } = this.state;
     return (
       <div>
         <h1> Add New Post </h1>
@@ -51,6 +65,27 @@ class PostForm extends Component {
             name="img_url"
             value={img_url}
             placeholder="Image"
+            onChange={this.changeHandler}
+          />
+          <input
+            type="text"
+            name="city"
+            value={city}
+            placeholder="City"
+            onChange={this.changeHandler}
+          />
+          <input
+            type="text"
+            name="state"
+            value={state}
+            placeholder="State"
+            onChange={this.changeHandler}
+          />
+          <input
+            type="text"
+            name="country"
+            value={country}
+            placeholder="Country"
             onChange={this.changeHandler}
           />
           <textarea

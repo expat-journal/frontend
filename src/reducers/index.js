@@ -14,9 +14,14 @@ import {
   GET_POST_ID_START,
   GET_POST_ID_SUCCESS,
   GET_POST_ID_FAILURE,
-  GET_COMMENTS_START,
   GET_COMMENTS_SUCCESS,
   GET_COMMENTS_FAILURE,
+  GET_USER_START,
+  GET_USER_SUCCESS,
+  GET_USER_FAILURE,
+  GET_USER_POST_START,
+  GET_USER_POST_SUCCESS,
+  GET_USER_POST_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -32,7 +37,10 @@ const initialState = {
   deletingPosts: false,
   updatingPosts: false,
   error: null,
-  activeUser: {}
+  gettingUser: false,
+  activeUser: {},
+  registeredUser: {},
+  userRegistered: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -46,7 +54,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
-        activeUser: action.credentials // which is user_name
+        activeUser: { user_name: action.credentials, user_id: action.user_id }
       };
     case LOGIN_FAIL:
       return {
@@ -59,20 +67,23 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         error: null,
-        registeringUser: true
+        registeringUser: true,
+        userRegistered: false
       };
     case REGISTER_SUCCESS:
       return {
         ...state,
         error: null,
-        registeringUser: true,
-        users: action.payload
+        registeringUser: false,
+        userRegistered: true,
+        registeredUser: action.user
       };
     case REGISTER_FAILURE:
       return {
         ...state,
         error: "Something went wrong",
-        registeringUser: false
+        registeringUser: false,
+        userRegistered: false
       };
     case GET_POSTS_START:
       return {
@@ -131,16 +142,57 @@ const rootReducer = (state = initialState, action) => {
         error: "Something went wrong",
         gettingPost: false
       };
-      case GET_COMMENTS_SUCCESS:
+    case GET_COMMENTS_SUCCESS:
       return {
         ...state,
-        comments: action.payload,
+        comments: action.payload
       };
-      case GET_COMMENTS_FAILURE:
+    case GET_COMMENTS_FAILURE:
       return {
         ...state,
         error: "Something went wrong"
-      }
+      };
+    case GET_USER_START:
+      return {
+        ...state,
+        error: null,
+        gettingUser: true
+      };
+
+    case GET_USER_SUCCESS:
+      return {
+        ...state,
+        error: null,
+        activeUser: action.credentials,
+        gettingUser: false
+      };
+    case GET_USER_FAILURE:
+      return {
+        ...state,
+        error: "Something went wrong",
+        gettingUser: false,
+        activeUser: {}
+      };
+    case GET_USER_POST_START:
+      return {
+        ...state,
+        error: null,
+        gettingUser: true
+      };
+    case GET_USER_POST_SUCCESS:
+      return {
+        ...state,
+        error: null,
+        activeUser: action.credentials,
+        gettingUser: false
+      };
+    case GET_USER_POST_FAILURE:
+      return {
+        ...state,
+        error: "Something went wrong",
+        gettingUser: false,
+        activeUser: {}
+      };
     default:
       return state;
   }

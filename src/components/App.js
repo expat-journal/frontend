@@ -8,31 +8,33 @@ import Post from "./Post";
 import PostForm from "./PostForm";
 import UpdateForm from "./UpdateForm";
 import Register from "./Register";
+import Users from "./Users";
 import PrivateRoute from "./PrivateRoute"; // redirecting to login for now
 
 // Styles
 import "../styles/App.css";
 
 class App extends Component {
- render() {
-   return (
-     <div className="App">
-       <nav>
-         <Link to="/register">Register</Link>
-         <Link to="/login">Login</Link>
-         <Link to="/posts">Posts</Link>
-         <Link to="/post-form">Post Your Story</Link>
-       </nav>
-       {/* <h2>Please Register or Login to Your Account to View Posts</h2> */}
-       <Route path="/login" component={LoginPage} />
-       <Route exact path="/register" component={Register} />
-       <PrivateRoute exact path="/posts" component={Posts} />
-       <PrivateRoute path="/posts/:id" component={Post} />
-       <PrivateRoute path="/post-form" component={PostForm} />
-       <PrivateRoute path="/update-form" component={UpdateForm} />
-     </div>
-   );
- }
+  render() {
+    return (
+      <div className="App">
+        <nav>
+          <Link to="/register">Register</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/posts">Posts</Link>
+          <Link to="/post-form">Post Your Story</Link>
+        </nav>
+        {/* <h2>Please Register or Login to Your Account to View Posts</h2> */}
+        <Route path="/login" component={LoginPage} />
+        <Route exact path="/register" component={Register} />
+        <PrivateRoute exact path="/posts" component={Posts} />
+        <PrivateRoute path="/posts/:id" component={Post} />
+        <PrivateRoute path="/post-form" component={PostForm} />
+        <PrivateRoute exact path="/user/:id" component={Users} />
+        <PrivateRoute path="/update-form" component={UpdateForm} />
+      </div>
+    );
+  }
 }
 
 export default App;

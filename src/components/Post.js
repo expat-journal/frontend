@@ -25,7 +25,11 @@ class Post extends React.Component {
   };
 
   render() {
-    if (this.props.match.params.id) {
+    const postId = this.props.post.user_id;
+    const userId = Number(localStorage.getItem("user_id"));
+    const { story, img_url, title, user_name } = this.props.post;
+
+    if (userId === postId) {
       return (
         <div>
           <button>Edit</button>
@@ -35,11 +39,12 @@ class Post extends React.Component {
           <img src={this.props.post.img_url} alt="post illustration" />
           <span>
             <i className="far fa-heart" onClick={this.increaseLikes} />
-            {this.state.likesCounter} likes 
+            {this.state.likesCounter} likes
           </span>
 
           <span>
-            <i className="far fa-comment" /> {this.props.comments.length} comments
+            <i className="far fa-comment" /> {this.props.comments.length}{" "}
+            comments
           </span>
 
           <p>"{this.props.post.story}"</p>
@@ -60,10 +65,10 @@ class Post extends React.Component {
     } else {
       return (
         <div>
-          <h2>{this.props.post.title}</h2>
-          <p>By: {this.props.post.user_name}</p>
-          <img src={this.props.post.img_url} alt="post illustration" />
-          <p>{this.props.post.story}</p>
+          <h2>{title}</h2>
+          <p>By: {user_name}</p>
+          <img src={img_url} alt="post illustration" />
+          <p>{story}</p>
         </div>
       );
     }

@@ -15,16 +15,23 @@ export {
   NEW_POST_START,
   NEW_POST_SUCCESS,
   NEW_POST_FAILURE,
-  newPost
-} from "./postsData";
-
-export {
+  newPost,
   GET_POST_ID_START,
   GET_POST_ID_SUCCESS,
   GET_POST_ID_FAILURE,
   getPostID,
-  GET_COMMENTS_START,
   GET_COMMENTS_SUCCESS,
   GET_COMMENTS_FAILURE,
-  getComments,
-} from "./postData";
+  getComments
+} from "./postsData";
+
+export {
+  GET_USER_START,
+  GET_USER_SUCCESS,
+  GET_USER_FAILURE,
+  getUser,
+  GET_USER_POST_START,
+  GET_USER_POST_SUCCESS,
+  GET_USER_POST_FAILURE,
+  getUserPost
+} from "./users";

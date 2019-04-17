@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { getPosts, getPostID } from "../actions";
+import { getPosts } from "../actions";
 class Posts extends React.Component {
   state = {
     filteredPost: [], // for search bar
@@ -35,6 +35,10 @@ class Posts extends React.Component {
   showPost = id => {
     this.props.history.push(`/posts/${id}`);
   };
+
+  showUser = id => {
+    this.props.history.push(`/user/${id}`);
+  };
   render() {
     const mappedPosts =
       this.state.filteredPost.length > 0
@@ -49,13 +53,18 @@ class Posts extends React.Component {
         </div>
       );
     }
+    let userId = Number(localStorage.getItem("user_id"));
+    console.log("User", userId);
+
     return (
       <div className="container story-list-container">
         <input onChange={this.filterPostHandler} placeholder="Search..." />
         <h1>Stories of our Travelers</h1>
         <Link to="/post-form">Submit Your Story</Link>
-
-        {mappedPosts.map(post => (
+        <button onClick={() => this.showUser(userId)}>
+          Go to your Profile
+        </button>
+        {this.props.posts.map(post => (
           <div key={post.id}>
             <h2>{post.title}</h2>
             <h3>By: {post.user_name}</h3>
@@ -88,17 +97,15 @@ user_name:
 user_profile_img: null
 */
 
-const mapStateToProps = state => {
-  console.log(state);
-  return {
-    posts: state.posts,
-    gettingPosts: state.gettingPosts
-  };
-};
+const mapStateToProps = state => ({
+  posts: state.posts,
+  gettingPosts: state.gettingPosts,
+  activeUser: state.activeUser
+});
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { getPosts, getPostID }
+    { getPosts }
   )(Posts)
 );
