@@ -81,3 +81,30 @@ export const getComments = id => dispatch => {
       })
     );
 };
+
+// updatePost action for Posts.js
+export const UPDATE_POST_START = "UPDATE_POST_START";
+export const UPDATE_POST_SUCCESS = "UPDATE_POST_SUCCESS";
+export const UPDATE_POST_FAILURE = "UPDATE_POST_FAILURE";
+
+export const updatePost = ({ id }) => dispatch => {
+  dispatch({ type: UPDATE_POST_START });
+  return axiosWithAuth()
+    .get(`https://expat-backend.herokuapp.com/posts/`, { id })
+    .then(res => {
+      console.log("From getComments:", res.data);
+      dispatch({ type: UPDATE_POST_SUCCESS, payload: res.data });
+    })
+    .catch(err =>
+      dispatch({
+        type: UPDATE_POST_FAILURE,
+        payload: err
+      })
+    );
+};
+
+export const SET_ACTIVE_POST = "SET_ACTIVE_POST";
+
+export const setActivePost = post => dispatch => {
+  dispatch({ type: SET_ACTIVE_POST, payload: post });
+};

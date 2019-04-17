@@ -31,9 +31,16 @@ class Users extends Component {
 
   editUser = e => {
     e.preventDefault();
-    let id = Number(localStorage.getItem("user_id"));
-    this.props.updateUser(id);
-
+    let user = {};
+    user.id = this.props.userProfile.id;
+    user.user_name =
+      this.state.user_name !== ""
+        ? this.state.credentials.user_name
+        : undefined;
+    user.password =
+      this.state.password !== "" ? this.state.credentials.password : undefined;
+    console.log(user);
+    this.props.updateUser(user);
     this.setState({
       ...this.state,
       credentials: {

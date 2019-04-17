@@ -23,7 +23,13 @@ export {
   GET_COMMENTS_START,
   GET_COMMENTS_SUCCESS,
   GET_COMMENTS_FAILURE,
-  getComments
+  getComments,
+  UPDATE_POST_START,
+  UPDATE_POST_SUCCESS,
+  UPDATE_POST_FAILURE,
+  updatePost,
+  SET_ACTIVE_POST,
+  setActivePost
 } from "./postsData";
 
 export {

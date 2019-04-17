@@ -25,7 +25,8 @@ import {
   GET_USER_POST_FAILURE,
   UPDATE_USER_START,
   UPDATE_USER_SUCCESS,
-  UPDATE_USER_FAILURE
+  UPDATE_USER_FAILURE,
+  SET_ACTIVE_POST
 } from "../actions";
 
 const initialState = {
@@ -226,6 +227,17 @@ const rootReducer = (state = initialState, action) => {
         error: "Something went wrong",
         gettingUser: false,
         gettingUserPost: {}
+      };
+    case SET_ACTIVE_POST:
+      return {
+        ...state,
+        activePost: action.payload
+      };
+      // case UP:
+      //   const posts = this.state.posts.map(p);
+
+      return {
+        ...state
       };
     default:
       return state;
