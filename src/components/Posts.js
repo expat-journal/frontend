@@ -19,7 +19,7 @@ class Posts extends React.Component {
   filteredPostHandler = e => {
     const newPostsData = this.props.posts.filter(post => {
       if (
-        post.state.includes(e.target.value) ||
+        post.city.includes(e.target.value) ||
         post.state.includes(e.target.value) ||
         post.country.includes(e.target.value)
       ) {
