@@ -77,7 +77,8 @@ class Post extends React.Component {
             <i className="far fa-comment" /> {this.props.comments.length}{" "}
             comments
           </span>
-          <p>{story}</p>
+
+          <p>"{this.props.post.story}"</p>
 
           <div className="comment-section">
             {this.props.comments.map(comment => (
@@ -88,7 +89,6 @@ class Post extends React.Component {
                 </p>
               </div>
             ))}
-            
           </div>
         </div>
       );
