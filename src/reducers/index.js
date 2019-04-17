@@ -14,6 +14,7 @@ import {
   GET_POST_ID_START,
   GET_POST_ID_SUCCESS,
   GET_POST_ID_FAILURE,
+  GET_COMMENTS_START,
   GET_COMMENTS_SUCCESS,
   GET_COMMENTS_FAILURE,
   GET_USER_START,
@@ -40,7 +41,9 @@ const initialState = {
   gettingUser: false,
   activeUser: {},
   registeredUser: {},
-  userRegistered: false
+  userRegistered: false,
+  userPost: {},
+  gettingUserPost: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -142,6 +145,11 @@ const rootReducer = (state = initialState, action) => {
         error: "Something went wrong",
         gettingPost: false
       };
+    case GET_COMMENTS_START:
+      return {
+        ...state,
+        error: null
+      };
     case GET_COMMENTS_SUCCESS:
       return {
         ...state,
@@ -177,21 +185,21 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         error: null,
-        gettingUser: true
+        gettingUserPost: true
       };
     case GET_USER_POST_SUCCESS:
       return {
         ...state,
         error: null,
-        activeUser: action.credentials,
-        gettingUser: false
+        userPost: action.payload,
+        gettingUserPost: false
       };
     case GET_USER_POST_FAILURE:
       return {
         ...state,
         error: "Something went wrong",
         gettingUser: false,
-        activeUser: {}
+        gettingUserPost: {}
       };
     default:
       return state;
