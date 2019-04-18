@@ -82,7 +82,6 @@ export const getComments = id => dispatch => {
     );
 };
 
-
 // newComment action suite for Posts.js
 
 export const NEW_COMMENT_START = "NEW_COMMENT_START";
@@ -90,15 +89,59 @@ export const NEW_COMMENT_SUCCESS = "NEW_COMMENT_SUCCESS";
 export const NEW_COMMENT_FAILURE = "NEW_COMMENT_FAILURE";
 
 export const newComment = comment => dispatch => {
-  dispatch({ type: NEW_COMMENT_START});
+  dispatch({ type: NEW_COMMENT_START });
   console.log("Starting adding new comment");
   return axiosWithAuth()
-  .post("https://expat-backend.herokuapp.com/comments", comment)
-  .then(res => {
-    console.log("Post Comment Accepted:", res.data);
-    dispatch({ type: NEW_COMMENT_SUCCESS, payload: res.data });
-  })
-  .catch(err => {
-    dispatch({ type: NEW_COMMENT_FAILURE, payload: err.response });
-  })
-}
+    .post("https://expat-backend.herokuapp.com/comments", comment)
+    .then(res => {
+      console.log("Post Comment Accepted:", res.data);
+      dispatch({ type: NEW_COMMENT_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: NEW_COMMENT_FAILURE, payload: err.response });
+    });
+};
+// updatePost action for Posts.js
+export const UPDATE_POST_START = "UPDATE_POST_START";
+export const UPDATE_POST_SUCCESS = "UPDATE_POST_SUCCESS";
+export const UPDATE_POST_FAILURE = "UPDATE_POST_FAILURE";
+
+export const updatePost = post => dispatch => {
+  dispatch({ type: UPDATE_POST_START });
+  return axiosWithAuth()
+    .put(`https://expat-backend.herokuapp.com/posts/`, post)
+    .then(res => {
+      console.log("From updatePost:", res.data);
+      dispatch({ type: UPDATE_POST_SUCCESS, payload: res.data });
+    })
+    .catch(err =>
+      dispatch({
+        type: UPDATE_POST_FAILURE,
+        payload: err
+      })
+    );
+};
+
+export const SET_ACTIVE_POST = "SET_ACTIVE_POST";
+
+export const setActivePost = post => dispatch => {
+  dispatch({ type: SET_ACTIVE_POST, payload: post });
+};
+
+// deletePost action for Post.js
+export const DELETE_POST_START = "DELETE_POST_START";
+export const DELETE_POST_SUCCESS = "DELETE_POST_SUCCESS";
+export const DELETE_POST_FAILURE = "DELETE_POST_FAILURE";
+
+export const deletePost = id => dispatch => {
+  dispatch({ type: DELETE_POST_START });
+  return axiosWithAuth()
+    .delete(`https://expat-backend.herokuapp.com/posts/${id}`)
+    .then(res => {
+      console.log("POST DELETED!");
+      dispatch({ type: DELETE_POST_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: DELETE_POST_FAILURE });
+    });
+};

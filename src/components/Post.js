@@ -1,7 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { getPostID, getComments, newComment } from "../actions";
+import { withRouter, Link } from "react-router-dom";
+import {
+  getPostID,
+  getComments,
+  setActivePost,
+  deletePost,
+  newComment
+} from "../actions";
+const Cryptr = require("cryptr");
+const cryptr = new Cryptr("myTotalySecretKey");
 
 class Post extends React.Component {
   state = {
@@ -48,89 +56,85 @@ class Post extends React.Component {
       }
     });
   };
+  // setting Active Post for update
+  setPostActive = post => {
+    this.props.setActivePost(post);
+    this.props.history.push("/update-form");
+  };
+
+  // deleting post
+  deletePost = id => {
+    if (window.confirm("Are you sure you want to delete this post")) {
+      this.props.deletePost(this.props.post.id);
+    }
+    this.props.history.push("/posts");
+  };
 
   render() {
     const postId = this.props.post.user_id;
-    const userId = Number(localStorage.getItem("user_id"));
+    const length = localStorage.length;
+    let userId = null;
+    for (let i = 0; i < length; i++) {
+      const key = localStorage.key(i);
+      try {
+        const decryptKey = cryptr.decrypt(key);
+        if (decryptKey === "user_id") {
+          const encryptedUserId = localStorage.getItem(key);
+          userId = Number(cryptr.decrypt(encryptedUserId));
+        }
+      } catch {}
+    }
+
     const { story, img_url, title, user_name } = this.props.post;
 
-    if (userId === postId) {
-      return (
-        <div>
-          <button>Edit</button>
-          <button>Delete</button>
-          <h2>{this.props.post.title}</h2>
-          <p>By: {this.props.post.user_name}</p>
-          <img src={this.props.post.img_url} alt="post illustration" />
-          <span>
-            <i className="far fa-heart" onClick={this.increaseLikes} />
-            {this.state.likesCounter} likes
-          </span>
+    return (
+      <div>
+        {userId === postId && (
+          <button onClick={e => this.setPostActive(this.props.post)}>
+            Edit
+          </button>
+        )}
+        {userId === postId && <button onClick={this.deletePost}>Delete</button>}
 
-          <span>
-            <i className="far fa-comment" /> {this.props.comments.length}{" "}
-            comments
-          </span>
+        <h2>{title}</h2>
 
-          <p>"{this.props.post.story}"</p>
+        <p>By: {user_name}</p>
+        <img src={img_url} alt="post illustration" />
+        <span>
+          <i className="far fa-heart" onClick={this.increaseLikes} />
+          {this.state.likesCounter} likes
+        </span>
 
-          <div className="comment-section">
-            {this.props.comments.map(comment => (
-              <div key={comment.id}>
-                <p>
-                  <strong>{comment.user_name} </strong>
-                  {comment.comment}
-                </p>
-              </div>
-            ))}
-            ;
-          </div>
+        <span>
+          <i className="far fa-comment" /> {this.props.comments.length} comments
+        </span>
+
+        <p>"{story}"</p>
+
+        <div className="comment-section">
+          {this.props.comments.map(comment => (
+            <div key={comment.id}>
+              <p>
+                <strong>{comment.user_name} </strong>
+                {comment.comment}
+              </p>
+            </div>
+          ))}
+          <form onSubmit={this.submitComment}>
+            <input
+              type="text"
+              name="comment"
+              value={this.state.newComment.comment}
+              onChange={this.handleChanges}
+              placeholder="Write your comment"
+            />
+            <button>Add</button>
+          </form>
         </div>
-      );
-    } else {
-      return (
-        <div>
-          <h2>{title}</h2>
-          <p>By: {user_name}</p>
-          <img src={img_url} alt="post illustration" />
-          <span>
-            <i className="far fa-heart" onClick={this.increaseLikes} />
-            {this.state.likesCounter} likes
-          </span>
-
-          <span>
-            <i className="far fa-comment" /> {this.props.comments.length}{" "}
-            comments
-          </span>
-
-          <p>"{this.props.post.story}"</p>
-
-          <div className="comment-section">
-            {this.props.comments.map(comment => (
-              <div key={comment.id}>
-                <p>
-                  <strong>{comment.user_name} </strong>
-                  {comment.comment}
-                </p>
-              </div>
-            ))}
-            <form onSubmit={this.submitComment}>
-              <input
-                type="text"
-                name="comment"
-                value={this.state.newComment.comment}
-                onChange={this.handleChanges}
-                placeholder="Write your comment"
-              />
-              <button>Add</button>
-            </form>
-          </div>
-        </div>
-      );
-    }
+      </div>
+    );
   }
 }
-
 const mapStateToProps = state => {
   console.log("Post:", state.post);
   return {
@@ -144,6 +148,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { getPostID, getComments, newComment }
+    { getPostID, getComments, setActivePost, deletePost, newComment }
   )(Post)
 );
