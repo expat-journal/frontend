@@ -30,12 +30,12 @@ class Register extends Component {
     console.log(this.props);
     const { user_name, password } = this.state;
     return (
-      <div>
-        <div>
-          <h1> Register</h1>
+      <div className=" form-container home-form">
+        <div >
+          <h2> Register</h2>
           <p> Please fill out the fields below: </p>
         </div>
-        <form onSubmit={this.registerUser}>
+        <form className="form" onSubmit={this.registerUser}>
           <input
             type="text"
             placeholder="Username"
@@ -50,7 +50,7 @@ class Register extends Component {
             value={password}
             onChange={this.changeHandler}
           />
-          <button>Submit</button>
+          <button className="btn submit-btn">Submit</button>
 
           {this.props.userRegistered && ( // register works prompt
             <p>
