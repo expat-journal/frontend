@@ -52,10 +52,16 @@ class Register extends Component {
           />
           <button>Submit</button>
 
-          {this.props.userRegistered && (
+          {this.props.userRegistered && ( // register works prompt
             <p>
               You have successfully registered! {this.props.registeredUser}{" "}
               Please <Link to="/login">log in</Link>
+            </p>
+          )}
+          {!this.props.registerUser && ( // registering fails error
+            <p>
+              Sorry please try again or <Link to="/login">log in</Link> with
+              your credentials.
             </p>
           )}
         </form>
