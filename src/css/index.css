@@ -283,6 +283,9 @@ strong {
 .posts-list-container .each-post .view-story-btn {
   font-size: 1.5rem;
 }
+.form-container {
+  min-height: 80vh;
+}
 .form-container h1 {
   font-size: 6rem;
   width: 100%;
@@ -292,4 +295,32 @@ strong {
   font-weight: bold;
   font-family: "Reem Kufi", sans-serif;
   text-shadow: 1px 2px 2px #182628;
+}
+.form-container .form {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.form-container input,
+.form-container textarea {
+  height: 50px;
+  width: 40%;
+  color: #182628;
+  padding-left: 15px;
+  font-size: 1.7rem;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  box-shadow: 2px 3px 5px gray;
+  margin-bottom: 20px;
+}
+.btn-container {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 3%;
+}
+.btn-container .btn {
+  width: 200px;
 }
