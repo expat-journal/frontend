@@ -36,7 +36,7 @@ class UpdateForm extends Component {
       country
     } = this.state;
     return (
-      <div>
+      <div className="container form-container">
         <h1> Edit Post </h1>
         <form onSubmit={this.updatePost}>
           <input

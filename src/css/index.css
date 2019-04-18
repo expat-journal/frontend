@@ -166,6 +166,7 @@ strong {
 .App {
   padding: 0% 10% 10%;
   background: #182628;
+  min-height: 100vh;
 }
 .App nav {
   display: flex;
@@ -210,10 +211,10 @@ strong {
   color: #f2f2f2;
 }
 .posts-page-container h1 {
+  font-size: 6rem;
   width: 100%;
   text-align: center;
   margin: 50px 0;
-  font-size: 6rem;
   color: #3B945E;
   font-weight: bold;
   font-family: "Reem Kufi", sans-serif;
@@ -281,4 +282,14 @@ strong {
 }
 .posts-list-container .each-post .view-story-btn {
   font-size: 1.5rem;
+}
+.form-container h1 {
+  font-size: 6rem;
+  width: 100%;
+  text-align: center;
+  margin: 50px 0;
+  color: #3B945E;
+  font-weight: bold;
+  font-family: "Reem Kufi", sans-serif;
+  text-shadow: 1px 2px 2px #182628;
 }

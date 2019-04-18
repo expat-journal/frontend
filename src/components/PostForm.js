@@ -37,7 +37,7 @@ class PostForm extends Component {
       country
     } = this.state;
     return (
-      <div>
+      <div className="container form-container">
         <h1> Add New Post </h1>
         <form onSubmit={this.addNewPost}>
           <input
