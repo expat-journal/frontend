@@ -253,6 +253,18 @@ strong {
   color: #182628;
   font-weight: bold;
 }
+.register-error,
+.register-success {
+  font-size: 2rem;
+  color: #182628;
+  padding: 2rem;
+  font-weight: bold;
+}
+.register-error a,
+.register-success a {
+  color: #3b945e;
+  text-transform: uppercase;
+}
 .posts-page-container h1 {
   font-size: 6rem;
   width: 100%;
