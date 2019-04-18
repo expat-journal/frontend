@@ -12,7 +12,9 @@ import Users from "./Users";
 import PrivateRoute from "./PrivateRoute"; // redirecting to login for now
 
 // Styles
-import "../styles/App.css";
+import "../styles/App.scss";
+//import "../styles/App.css";
+
 //Decrypt username
 const Cryptr = require("cryptr");
 const cryptr = new Cryptr("myTotalySecretKey");

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getPosts } from "../actions";
+import "../styles/Posts.scss";
+
 const Cryptr = require("cryptr");
 const cryptr = new Cryptr("myTotalySecretKey");
 class Posts extends React.Component {
@@ -54,7 +56,7 @@ class Posts extends React.Component {
     // conditional render - if gettingPosts is true
     if (this.props.gettingPosts) {
       return (
-        <div className="container loading-container">
+        <div className="container posts-page-container">
           <h1>One moment please. We are loading the data...</h1>
         </div>
       );
@@ -74,32 +76,55 @@ class Posts extends React.Component {
     console.log("User", userId);
 
     return (
-      <div className="container story-list-container">
-        <input
-          onChange={this.filteredPostHandler}
-          placeholder="Search by city, state, or country..."
-        />
-        <button onClick={() => this.showUser(userId)}>
-          Go to your Profile
-        </button>
-        {mappedPosts.map(post => (
-          <div key={post.id}>
-            <h2>{post.title}</h2>
-            <h3>By: {post.user_name}</h3>
-            <img src={post.img_url} alt="To Be Uploaded" />
-            <span>
-              {post.description}{" "}
-              <strong>
-                {post.city}, {post.state}, {post.country}
-              </strong>
-            </span>
-            <button onClick={() => this.showPost(post.id)}>
-              View Full Story
-            </button>
-          </div>
-        ))}
+      <div className="container posts-page-container">
+        <div className="top-section-container">
+          <input
+            onChange={this.filteredPostHandler}
+            placeholder="Search by city, state, or country..."
+          />
+          <button className="btn submit-story-btn">
+            <Link to="/post-form">Submit Your Story</Link>
+          </button>
+          <button
+            className="btn profile-btn"
+            onClick={() => this.showUser(userId)}
+          >
+            Go to your Profile
+          </button>
+        </div>
+        <h1>Stories of Our Travelers</h1>
 
-        <Link to="/post-form">Submit Your Story</Link>
+        <div className="posts-list-container">
+          {mappedPosts.map(post => (
+            <div key={post.id} className="each-post">
+              <h2>{post.title}</h2>
+              <h3>By: {post.user_name}</h3>
+              <img
+                src={post.img_url}
+                alt="To Be Uploaded"
+                onClick={() => this.showPost(post.id)}
+              />
+              <p>
+                <italic>
+                  {post.description}{" "}
+                  <strong>
+                    {post.city}, {post.state}, {post.country}
+                  </strong>
+                </italic>
+              </p>
+              <button
+                className="btn view-story-btn"
+                onClick={() => this.showPost(post.id)}
+              >
+                View Full Story
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <Link className="link" to="/post-form">
+          Submit Your Story
+        </Link>
       </div>
     );
   }
