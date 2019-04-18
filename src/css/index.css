@@ -247,6 +247,12 @@ strong {
   font-size: 2.5rem;
   font-weight: bold;
 }
+.current-user {
+  font-family: "Reem Kufi", sans-serif;
+  font-size: 2.5rem;
+  color: #182628;
+  font-weight: bold;
+}
 .posts-page-container h1 {
   font-size: 6rem;
   width: 100%;
@@ -351,6 +357,9 @@ strong {
   border: 1px solid lightgray;
   box-shadow: 2px 3px 5px gray;
   margin-bottom: 20px;
+}
+.form-container textarea {
+  height: 100px;
 }
 .btn-container {
   width: 40%;
@@ -493,14 +502,16 @@ strong {
   border-radius: 20px;
 }
 .user-profile .user-name {
-  font-size: 3rem;
-  font-family: "Reem Kufi", sans-serif;
+  text-shadow: 1px 2px 2px #182628;
   margin-left: 2rem;
+  font-family: "Reem Kufi", sans-serif;
+  font-size: 6rem;
   padding: 1rem;
   color: #3b945e;
 }
 .user-profile .btn-user {
   margin-left: 5rem;
+  margin-top: 1rem;
 }
 .user-profile .user-edit {
   display: flex;
@@ -558,7 +569,15 @@ strong {
 }
 .user-profile .user-profile-current {
   font-family: "Reem Kufi", sans-serif;
-  font-size: 3rem;
-  padding-top: 2rem;
-  margin-left: 2rem;
+  font-size: 4rem;
+  margin: 2.6rem 0;
+  padding: 2rem;
+  background: #3b945e;
+  text-align: center;
+}
+.user-profile .no-post {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 1.5rem;
 }

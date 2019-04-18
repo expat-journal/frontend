@@ -20,9 +20,6 @@ const Cryptr = require("cryptr");
 const cryptr = new Cryptr("myTotalySecretKey");
 
 class App extends Component {
-  state = {
-    logout: false
-  };
   // Clears localstorage and logs out user
   logOutHandler = () => {
     localStorage.clear();
@@ -46,7 +43,7 @@ class App extends Component {
       <div className="App">
         {user ? (
           <nav>
-            <p>Welcome {user}</p>
+            <p className="current-user">Welcome {user}</p>
             <NavLink to="/posts" activeClassName="active-nav">
               Posts
             </NavLink>
@@ -70,16 +67,18 @@ class App extends Component {
             <div className="container home-container">
               <h1>Welcome to Expat Journal!</h1>
               <h2>
-                If you're a new user, please register.<br /> If you've already
-                registered, please login to view posts.
+                If you're a new user, please register.
+                <br /> If you've already registered, please login to view posts.
               </h2>
               <div className="home-btn">
-              <Link to="/register" className="home-btn"><button className="btn register-btn">Register</button>
-              </Link>
-              <Link to="/login"><button className="btn login-btn">Login</button></Link>
+                <Link to="/register" className="home-btn">
+                  <button className="btn register-btn">Register</button>
+                </Link>
+                <Link to="/login">
+                  <button className="btn login-btn">Login</button>
+                </Link>
+              </div>
             </div>
-            </div>
-
           </div>
         )}
         <Route path="/login" component={LoginPage} />

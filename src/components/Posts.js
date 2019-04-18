@@ -38,11 +38,12 @@ class Posts extends React.Component {
       this.setState({ posts: this.props.posts });
     }
   }
-
+  //redirect to single post view
   showPost = id => {
     this.props.history.push(`/posts/${id}`);
   };
 
+  //redirect to users profile page
   showUser = id => {
     this.props.history.push(`/user/${id}`);
   };
@@ -60,6 +61,8 @@ class Posts extends React.Component {
         </div>
       );
     }
+
+    //decrypting local storage user id
     const length = localStorage.length;
     let userId = null;
     for (let i = 0; i < length; i++) {
@@ -72,7 +75,6 @@ class Posts extends React.Component {
         }
       } catch {}
     }
-    console.log("User", userId);
 
     return (
       <div className="container posts-page-container">
