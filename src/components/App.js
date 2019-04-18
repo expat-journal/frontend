@@ -43,7 +43,7 @@ class App extends Component {
       <div className="App">
         {user ? (
           <nav>
-            <p className="current-user">Welcome {user}</p>
+            <p className="current-user">Welcome Expat</p>
             <NavLink to="/posts" activeClassName="active-nav">
               Posts
             </NavLink>

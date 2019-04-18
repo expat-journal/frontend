@@ -376,11 +376,11 @@ strong {
 .btn-container {
   width: 40%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding-bottom: 3%;
 }
 .btn-container .btn {
-  width: 150px;
+  width: 200px;
 }
 .home-form {
   background: white;

@@ -24,7 +24,7 @@ class UpdateForm extends Component {
     e.preventDefault();
     this.props.updatePost(this.state);
     alert("Edit Confirmed!");
-    setInterval(() => window.location.reload(), 50);
+    setInterval(() => window.location.reload(), 100);
 
     this.props.history.push("/posts");
   };
