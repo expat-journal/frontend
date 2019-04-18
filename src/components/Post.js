@@ -1,9 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { getPostID, getComments, setActivePost, deletePost, newComment } from "../actions";
-const Cryptr = require('cryptr');
-const cryptr = new Cryptr('myTotalySecretKey');
+import {
+  getPostID,
+  getComments,
+  setActivePost,
+  deletePost,
+  newComment
+} from "../actions";
+const Cryptr = require("cryptr");
+const cryptr = new Cryptr("myTotalySecretKey");
 
 class Post extends React.Component {
   state = {
@@ -49,6 +55,7 @@ class Post extends React.Component {
         post_id: ""
       }
     });
+  };
   // setting Active Post for update
   setPostActive = post => {
     this.props.setActivePost(post);
@@ -59,7 +66,7 @@ class Post extends React.Component {
   deletePost = id => {
     if (window.confirm("Are you sure you want to delete this post")) {
       this.props.deletePost(this.props.post.id);
-    };
+    }
     this.props.history.push("/posts");
   };
 
@@ -67,22 +74,17 @@ class Post extends React.Component {
     const postId = this.props.post.user_id;
     const length = localStorage.length;
     let userId = null;
-    for(let i = 0; i < length; i++){
+    for (let i = 0; i < length; i++) {
       const key = localStorage.key(i);
       try {
         const decryptKey = cryptr.decrypt(key);
-        if (decryptKey === "user_id"){
+        if (decryptKey === "user_id") {
           const encryptedUserId = localStorage.getItem(key);
           userId = Number(cryptr.decrypt(encryptedUserId));
         }
-      }catch{
-
-      }
-      
+      } catch {}
     }
 
-
-    
     const { story, img_url, title, user_name } = this.props.post;
 
     return (
@@ -93,9 +95,9 @@ class Post extends React.Component {
           </button>
         )}
         {userId === postId && <button onClick={this.deletePost}>Delete</button>}
-        
+
         <h2>{title}</h2>
-        
+
         <p>By: {user_name}</p>
         <img src={img_url} alt="post illustration" />
         <span>
@@ -109,32 +111,30 @@ class Post extends React.Component {
 
         <p>"{story}"</p>
 
-          <div className="comment-section">
-            {this.props.comments.map(comment => (
-              <div key={comment.id}>
-                <p>
-                  <strong>{comment.user_name} </strong>
-                  {comment.comment}
-                </p>
-              </div>
-            ))}
-            <form onSubmit={this.submitComment}>
-              <input
-                type="text"
-                name="comment"
-                value={this.state.newComment.comment}
-                onChange={this.handleChanges}
-                placeholder="Write your comment"
-              />
-              <button>Add</button>
-            </form>
-          </div>
+        <div className="comment-section">
+          {this.props.comments.map(comment => (
+            <div key={comment.id}>
+              <p>
+                <strong>{comment.user_name} </strong>
+                {comment.comment}
+              </p>
+            </div>
+          ))}
+          <form onSubmit={this.submitComment}>
+            <input
+              type="text"
+              name="comment"
+              value={this.state.newComment.comment}
+              onChange={this.handleChanges}
+              placeholder="Write your comment"
+            />
+            <button>Add</button>
+          </form>
+        </div>
       </div>
     );
   }
 }
-}
-
 const mapStateToProps = state => {
   console.log("Post:", state.post);
   return {

@@ -1,8 +1,8 @@
 import axios from "axios";
-const Cryptr = require('cryptr');
-const cryptr = new Cryptr('myTotalySecretKey');
-// registerUser action creator Register.js
+const Cryptr = require("cryptr");
+const cryptr = new Cryptr("myTotalySecretKey");
 
+// registerUser action creator Register.js
 export const REGISTER_START = "REGISTER_START";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
