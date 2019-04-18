@@ -181,7 +181,13 @@ strong {
   color: #182628;
 }
 .App a:hover {
-  color: pink;
+  font-weight: bold;
+}
+.App .active-nav {
+  background: #182628;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 10px;
 }
 .container {
   background: white;
@@ -207,14 +213,16 @@ strong {
   width: 100%;
   text-align: center;
   margin: 50px 0;
-  font-size: 5.5rem;
+  font-size: 6rem;
+  color: #3B945E;
+  font-weight: bold;
   font-family: "Reem Kufi", sans-serif;
-  text-shadow: 1px 2px 3px rgba(32, 178, 171, 0.226);
+  text-shadow: 1px 2px 2px #182628;
 }
 .top-section-container {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .top-section-container input {
   width: 50%;
@@ -240,7 +248,7 @@ strong {
 .posts-list-container .each-post {
   width: 32%;
   text-align: center;
-  background: rgba(43, 43, 54, 0.16);
+  background: rgba(245, 216, 137, 0.11);
   border-radius: 10px;
   box-shadow: 1px 2px 3px grey;
   margin: 10px;

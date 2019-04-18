@@ -46,12 +46,14 @@ class App extends Component {
       <div className="App">
         {user ? (
           <nav>
-            <NavLink to="/login" onClick={this.logOutHandler}>
+            <p>Welcome {user}</p>
+            
+            <NavLink to="/posts" activeClassName="active-nav" >Posts</NavLink>
+            <NavLink to="/post-form" activeClassName="active-nav">Post Your Story</NavLink>
+            <NavLink to="/login" activeClassName="active-nav" onClick={this.logOutHandler}>
               Log Out
             </NavLink>
-            <NavLink to="/posts">Posts</NavLink>
-            <NavLink to="/post-form">Post Your Story</NavLink>
-            <p>Welcome {user}</p>
+            
           </nav>
         ) : (
           <div>
