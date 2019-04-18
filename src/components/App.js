@@ -12,7 +12,7 @@ import Users from "./Users";
 import PrivateRoute from "./PrivateRoute"; // redirecting to login for now
 
 // Styles
-import "../styles/App.scss";
+import "../css/index.css";
 //import "../styles/App.css";
 
 //Decrypt username

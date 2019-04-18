@@ -1,0 +1,267 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+	v2.0 | 20110126
+	License: none (public domain)
+*/
+/* prettier-ignore */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+/* prettier-ignore */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 62.5%;
+  overflow-y: scroll;
+}
+body {
+  font-size: 1.4rem;
+}
+button:focus {
+  outline: none;
+}
+a:hover {
+  outline: none;
+}
+h1 {
+  font-size: 2.4rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.7rem;
+}
+p {
+  font-size: 1.5rem;
+}
+italic {
+  font-style: italic;
+}
+strong {
+  font-weight: bold;
+}
+.App {
+  padding: 0% 10% 10%;
+  background: #e7e3e3;
+}
+.App nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 20px;
+  background: white;
+  height: 80px;
+}
+.App a {
+  text-decoration: none;
+  font-size: 1.8rem;
+}
+.container {
+  background: white;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.container .btn {
+  height: 40px;
+  font-size: 1.8rem;
+  border-radius: 5px;
+  box-shadow: 2px 3px 5px #272626;
+  margin: 5px 0;
+}
+.container .btn:hover {
+  cursor: pointer;
+}
+.posts-page-container h1 {
+  width: 100%;
+  text-align: center;
+  margin: 50px 0;
+  font-size: 5.5rem;
+  font-family: "Reem Kufi", sans-serif;
+  text-shadow: 1px 2px 3px rgba(32, 178, 171, 0.226);
+}
+.top-section-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.top-section-container input {
+  width: 50%;
+  text-align: center;
+  font-size: 1.7rem;
+  background: rgba(184, 240, 255, 0.39);
+  border-radius: 5px;
+  border: lightgrey;
+  box-shadow: 1px 2px 3px gray;
+}
+.posts-list-container {
+  margin: 30px auto 0;
+  width: 100%;
+  min-height: 100vh;
+  height: 3500px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.posts-list-container .each-post {
+  width: 32%;
+  text-align: center;
+  background: rgba(43, 43, 54, 0.16);
+  border-radius: 10px;
+  box-shadow: 1px 2px 3px grey;
+  margin: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.posts-list-container .each-post h2,
+.posts-list-container .each-post h3,
+.posts-list-container .each-post img,
+.posts-list-container .each-post p,
+.posts-list-container .each-post button {
+  margin-bottom: 10px;
+}
+.posts-list-container .each-post h2 {
+  font-family: "Reem Kufi", sans-serif;
+}
+.posts-list-container .each-post img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px #131212;
+}
+.posts-list-container .each-post img:hover {
+  filter: blur(8px);
+  cursor: pointer;
+}
+.posts-list-container .each-post .view-story-btn {
+  font-size: 1.5rem;
+}

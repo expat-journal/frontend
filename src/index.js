@@ -16,7 +16,7 @@ import rootReducer from "./reducers/index";
 import App from "./components/App";
 
 // Styles
-import "./index.css";
+import "./css/index.css";
 
 const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
