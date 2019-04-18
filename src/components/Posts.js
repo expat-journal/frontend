@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getPosts } from "../actions";
-const Cryptr = require('cryptr');
-const cryptr = new Cryptr('myTotalySecretKey');
+const Cryptr = require("cryptr");
+const cryptr = new Cryptr("myTotalySecretKey");
 class Posts extends React.Component {
   state = {
     filteredPost: [], // for search bar
@@ -34,7 +34,6 @@ class Posts extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.posts !== this.props.posts) {
-
       this.setState({ posts: this.props.posts });
     }
   }
@@ -62,18 +61,15 @@ class Posts extends React.Component {
     }
     const length = localStorage.length;
     let userId = null;
-    for(let i = 0; i < length; i++){
+    for (let i = 0; i < length; i++) {
       const key = localStorage.key(i);
       try {
         const decryptKey = cryptr.decrypt(key);
-        if (decryptKey === "user_id"){
+        if (decryptKey === "user_id") {
           const encryptedUserId = localStorage.getItem(key);
           userId = Number(cryptr.decrypt(encryptedUserId));
         }
-      }catch{
-
-      }
-      
+      } catch {}
     }
     console.log("User", userId);
 
@@ -83,8 +79,6 @@ class Posts extends React.Component {
           onChange={this.filteredPostHandler}
           placeholder="Search by city, state, or country..."
         />
-        <h1>Stories of our Travelers</h1>
-        <Link to="/post-form">Submit Your Story</Link>
         <button onClick={() => this.showUser(userId)}>
           Go to your Profile
         </button>
