@@ -284,7 +284,7 @@ strong {
   align-items: center;
 }
 .posts-list-container .each-post {
-  width: 32%;
+  width: 29%;
   text-align: center;
   background: rgba(245, 216, 137, 0.11);
   border-radius: 10px;
@@ -355,11 +355,11 @@ strong {
 .btn-container {
   width: 40%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding-bottom: 3%;
 }
 .btn-container .btn {
-  width: 200px;
+  width: 150px;
 }
 .home-form {
   background: white;
