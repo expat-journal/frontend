@@ -81,9 +81,7 @@ class Posts extends React.Component {
             onChange={this.filteredPostHandler}
             placeholder="Search by city, state, or country..."
           />
-          <button className="btn submit-story-btn">
-            <Link to="/post-form">Submit Your Story</Link>
-          </button>
+
           <button
             className="btn profile-btn"
             onClick={() => this.showUser(userId)}
@@ -120,10 +118,6 @@ class Posts extends React.Component {
             </div>
           ))}
         </div>
-
-        <Link className="link" to="/post-form">
-          Submit Your Story
-        </Link>
       </div>
     );
   }

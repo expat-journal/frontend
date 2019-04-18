@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { updatePost } from "../actions/index";
 class UpdateForm extends Component {
@@ -36,9 +37,9 @@ class UpdateForm extends Component {
       country
     } = this.state;
     return (
-      <div>
+      <div className="container form-container">
         <h1> Edit Post </h1>
-        <form onSubmit={this.updatePost}>
+        <form className="form" onSubmit={this.updatePost}>
           <input
             type="text"
             name="title"
@@ -88,7 +89,10 @@ class UpdateForm extends Component {
             placeholder="Story"
             onChange={this.changeHandler}
           />
-          <button> Update Post </button>
+          <div className="btn-container">
+            <button className="btn"> Update Post </button>
+            <Link to="/posts"><button className="btn">Cancel</button></Link>
+          </div>
         </form>
       </div>
     );

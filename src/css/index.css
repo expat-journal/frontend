@@ -165,7 +165,8 @@ strong {
 }
 .App {
   padding: 0% 10% 10%;
-  background: #e7e3e3;
+  background: #182628;
+  min-height: 100vh;
 }
 .App nav {
   display: flex;
@@ -178,6 +179,16 @@ strong {
 .App a {
   text-decoration: none;
   font-size: 1.8rem;
+  color: #182628;
+}
+.App a:hover {
+  font-weight: bold;
+}
+.App .active-nav {
+  background: #182628;
+  color: white;
+  padding: 15px 40px;
+  border-radius: 10px;
 }
 .container {
   background: white;
@@ -191,31 +202,74 @@ strong {
   border-radius: 5px;
   box-shadow: 2px 3px 5px #272626;
   margin: 5px 0;
+  background: #65CCB8;
+  border: none;
 }
 .container .btn:hover {
   cursor: pointer;
+  background: #182628;
+  color: #f2f2f2;
 }
-.posts-page-container h1 {
+.home-nav {
+  visibility: hidden;
+}
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.home-container h1 {
+  font-size: 6rem;
   width: 100%;
   text-align: center;
   margin: 50px 0;
-  font-size: 5.5rem;
+  color: #3B945E;
+  font-weight: bold;
   font-family: "Reem Kufi", sans-serif;
-  text-shadow: 1px 2px 3px rgba(32, 178, 171, 0.226);
+  text-shadow: 1px 2px 2px #182628;
+}
+.home-container h2 {
+  text-align: center;
+  font-size: 3rem;
+  line-height: 50px;
+}
+.home-btn {
+  margin-top: 2%;
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.home-btn .register-btn,
+.home-btn .login-btn {
+  width: 200px;
+  height: 60px;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.posts-page-container h1 {
+  font-size: 6rem;
+  width: 100%;
+  text-align: center;
+  margin: 50px 0;
+  color: #3B945E;
+  font-weight: bold;
+  font-family: "Reem Kufi", sans-serif;
+  text-shadow: 1px 2px 2px #182628;
 }
 .top-section-container {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .top-section-container input {
   width: 50%;
   text-align: center;
   font-size: 1.7rem;
-  background: rgba(184, 240, 255, 0.39);
+  background: rgba(184, 255, 249, 0.39);
   border-radius: 5px;
-  border: lightgrey;
-  box-shadow: 1px 2px 3px gray;
+  border: 1px solid #e7e2e2;
+  box-shadow: 1px 2px 3px lightgray;
 }
 .posts-list-container {
   margin: 30px auto 0;
@@ -232,7 +286,7 @@ strong {
 .posts-list-container .each-post {
   width: 32%;
   text-align: center;
-  background: rgba(43, 43, 54, 0.16);
+  background: rgba(245, 216, 137, 0.11);
   border-radius: 10px;
   box-shadow: 1px 2px 3px grey;
   margin: 10px;
@@ -259,9 +313,51 @@ strong {
   box-shadow: 1px 2px 5px #131212;
 }
 .posts-list-container .each-post img:hover {
-  filter: blur(8px);
+  filter: grayscale(90%);
+  transform: scale(0.99);
   cursor: pointer;
 }
 .posts-list-container .each-post .view-story-btn {
   font-size: 1.5rem;
+}
+.form-container {
+  min-height: 80vh;
+}
+.form-container h1 {
+  font-size: 6rem;
+  width: 100%;
+  text-align: center;
+  margin: 50px 0;
+  color: #3B945E;
+  font-weight: bold;
+  font-family: "Reem Kufi", sans-serif;
+  text-shadow: 1px 2px 2px #182628;
+}
+.form-container .form {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.form-container input,
+.form-container textarea {
+  height: 50px;
+  width: 40%;
+  color: #182628;
+  padding-left: 15px;
+  font-size: 1.7rem;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  box-shadow: 2px 3px 5px gray;
+  margin-bottom: 20px;
+}
+.btn-container {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 3%;
+}
+.btn-container .btn {
+  width: 200px;
 }
