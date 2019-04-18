@@ -47,26 +47,43 @@ class App extends Component {
         {user ? (
           <nav>
             <p>Welcome {user}</p>
-            
-            <NavLink to="/posts" activeClassName="active-nav" >Posts</NavLink>
-            <NavLink to="/post-form" activeClassName="active-nav">Post Your Story</NavLink>
-            <NavLink to="/login" activeClassName="active-nav" onClick={this.logOutHandler}>
+            <NavLink to="/posts" activeClassName="active-nav">
+              Posts
+            </NavLink>
+            <NavLink to="/post-form" activeClassName="active-nav">
+              Post Your Story
+            </NavLink>
+            <NavLink
+              to="/login"
+              activeClassName="active-nav"
+              onClick={this.logOutHandler}
+            >
               Log Out
             </NavLink>
-            
           </nav>
         ) : (
           <div>
-            <nav>
-              <h1>Welcome to Expat Journal!</h1>
-              <h2>Please log in or Register to gain access</h2>
+            <nav className="home-nav">
               <Link to="/register">Register</Link>
               <Link to="/login">Login</Link>
             </nav>
+            <div className="container home-container">
+              <h1>Welcome to Expat Journal!</h1>
+              <h2>
+                If you're a new user, please register.<br /> If you've already
+                registered, please login to view posts.
+              </h2>
+              <div className="home-btn">
+              <Link to="/register" className="home-btn"><button className="btn register-btn">Register</button>
+              </Link>
+              <Link to="/login"><button className="btn login-btn">Login</button></Link>
+            </div>
+            </div>
+
           </div>
         )}
         <Route path="/login" component={LoginPage} />
-        <Route exact path="/register" component={Register} />
+        <Route path="/register" component={Register} />
         <PrivateRoute exact path="/posts" component={Posts} />
         <PrivateRoute path="/posts/:id" component={Post} />
         <PrivateRoute path="/post-form" component={PostForm} />

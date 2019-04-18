@@ -1,6 +1,5 @@
 .App {
   padding: 0% 10% 10%;
-  //background: rgb(231, 227, 227);
   background: @mirage;
   min-height: 100vh;
 
@@ -52,4 +51,42 @@
     background: @mirage;
     color: @white;
   }
+
+}
+
+
+.home-nav {
+  visibility: hidden;
+}
+.home-container {
+  //min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    .h1-styles;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 3rem;
+    line-height: 50px;
+  }
+}
+
+.home-btn {
+  margin-top: 2%;
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+    .register-btn, .login-btn{
+      width: 200px;
+      height: 60px;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    
 }
