@@ -273,11 +273,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         posts: [...posts]
       };
-
-      return {
-        ...state
-      };
-
     case DELETE_POST_START:
       return {
         ...state,
