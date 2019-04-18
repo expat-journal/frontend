@@ -321,7 +321,7 @@ strong {
   font-size: 1.5rem;
 }
 .form-container {
-  min-height: 80vh;
+  text-align: center;
 }
 .form-container h1 {
   font-size: 6rem;
@@ -360,4 +360,32 @@ strong {
 }
 .btn-container .btn {
   width: 200px;
+}
+.home-form {
+  background: white;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding-top: 3%;
+}
+.home-form h2,
+.home-form p {
+  margin-bottom: 15px;
+}
+.home-form .form {
+  min-height: auto;
+}
+.submit-btn {
+  height: 40px;
+  width: 100px;
+  font-size: 1.8rem;
+  border-radius: 5px;
+  box-shadow: 2px 3px 5px #272626;
+  margin: 20px 0;
+  background: #65CCB8;
+  border: none;
+}
+.submit-btn:hover {
+  cursor: pointer;
+  background: #182628;
+  color: #f2f2f2;
 }
