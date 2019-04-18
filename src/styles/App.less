@@ -1,6 +1,7 @@
 .App {
   padding: 0% 10% 10%;
-  background: rgb(231, 227, 227);
+  //background: rgb(231, 227, 227);
+  background: @mirage;
 
   nav {
     display: flex;
@@ -14,6 +15,11 @@
   a {
     text-decoration: none;
     font-size: 1.8rem;
+    color: @mirage;
+  }
+
+  a:hover {
+    color: pink;
   }
 }
 
@@ -29,9 +35,13 @@
     border-radius: 5px;
     box-shadow: 2px 3px 5px rgb(39, 38, 38);
     margin: 5px 0;
+    background: @light-teal;
+    border: none;
   }
 
   .btn:hover {
     cursor: pointer;
+    background: @mirage;
+    color: @white;
   }
 }

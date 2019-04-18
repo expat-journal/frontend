@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, NavLink } from "react-router-dom";
 
 // Components
 import LoginPage from "./LoginPage";
@@ -46,11 +46,11 @@ class App extends Component {
       <div className="App">
         {user ? (
           <nav>
-            <Link to="/login" onClick={this.logOutHandler}>
+            <NavLink to="/login" onClick={this.logOutHandler}>
               Log Out
-            </Link>
-            <Link to="/posts">Posts</Link>
-            <Link to="/post-form">Post Your Story</Link>
+            </NavLink>
+            <NavLink to="/posts">Posts</NavLink>
+            <NavLink to="/post-form">Post Your Story</NavLink>
             <p>Welcome {user}</p>
           </nav>
         ) : (

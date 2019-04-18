@@ -18,10 +18,11 @@
     width: 50%;
     text-align: center;
     font-size: 1.7rem;
-    background: rgba(184, 240, 255, 0.39);
+    background: rgba(184, 255, 249, 0.39);
+    //background: @light-teal;
     border-radius: 5px;
-    border: lightgrey;
-    box-shadow: 1px 2px 3px gray;
+    border: 1px solid rgb(231, 226, 226);
+    box-shadow: 1px 2px 3px lightgray;
   }
 }
 
@@ -72,7 +73,8 @@
       box-shadow: 1px 2px 5px rgb(19, 18, 18);
 
       &:hover {
-        filter: blur(8px);
+        filter: grayscale(90%);
+        transform: scale(.99);
         cursor: pointer;
       }
     }

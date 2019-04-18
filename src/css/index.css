@@ -165,7 +165,7 @@ strong {
 }
 .App {
   padding: 0% 10% 10%;
-  background: #e7e3e3;
+  background: #182628;
 }
 .App nav {
   display: flex;
@@ -178,6 +178,10 @@ strong {
 .App a {
   text-decoration: none;
   font-size: 1.8rem;
+  color: #182628;
+}
+.App a:hover {
+  color: pink;
 }
 .container {
   background: white;
@@ -191,9 +195,13 @@ strong {
   border-radius: 5px;
   box-shadow: 2px 3px 5px #272626;
   margin: 5px 0;
+  background: #65CCB8;
+  border: none;
 }
 .container .btn:hover {
   cursor: pointer;
+  background: #182628;
+  color: #f2f2f2;
 }
 .posts-page-container h1 {
   width: 100%;
@@ -212,10 +220,10 @@ strong {
   width: 50%;
   text-align: center;
   font-size: 1.7rem;
-  background: rgba(184, 240, 255, 0.39);
+  background: rgba(184, 255, 249, 0.39);
   border-radius: 5px;
-  border: lightgrey;
-  box-shadow: 1px 2px 3px gray;
+  border: 1px solid #e7e2e2;
+  box-shadow: 1px 2px 3px lightgray;
 }
 .posts-list-container {
   margin: 30px auto 0;
@@ -259,7 +267,8 @@ strong {
   box-shadow: 1px 2px 5px #131212;
 }
 .posts-list-container .each-post img:hover {
-  filter: blur(8px);
+  filter: grayscale(90%);
+  transform: scale(0.99);
   cursor: pointer;
 }
 .posts-list-container .each-post .view-story-btn {
