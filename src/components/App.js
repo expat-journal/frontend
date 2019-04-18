@@ -20,10 +20,14 @@ const Cryptr = require("cryptr");
 const cryptr = new Cryptr("myTotalySecretKey");
 
 class App extends Component {
+  state = {
+    logout: false
+  };
   // Clears localstorage and logs out user
   logOutHandler = () => {
     localStorage.clear();
     alert("Thanks for visiting! Come back soon!");
+    setInterval(() => window.location.reload(), 900);
   };
   render() {
     // Decrypt username to check which navbar to render
@@ -50,11 +54,14 @@ class App extends Component {
             <p>Welcome {user}</p>
           </nav>
         ) : (
-          <nav>
-            <Link to="/register">Register</Link>
-            <Link to="/login">Login</Link>
-            <h2>Please log in or Register to gain access</h2>
-          </nav>
+          <div>
+            <nav>
+              <h1>Welcome to Expat Journal!</h1>
+              <h2>Please log in or Register to gain access</h2>
+              <Link to="/register">Register</Link>
+              <Link to="/login">Login</Link>
+            </nav>
+          </div>
         )}
         <Route path="/login" component={LoginPage} />
         <Route exact path="/register" component={Register} />

@@ -22,7 +22,8 @@ class PostForm extends Component {
     e.preventDefault();
     this.props.newPost(this.state);
     alert("Successfully added Post. Let's check it out!");
-    setInterval(() => this.props.history.push("/posts"), 1000);
+    this.props.history.push("/posts");
+    setInterval(() => window.location.reload(), 800);
   };
 
   render() {
