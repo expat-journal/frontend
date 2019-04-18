@@ -66,43 +66,62 @@ class Users extends Component {
   render() {
     return (
       <div className="user-profile">
-        <p>{this.props.userProfile.user_name}</p>
-        <button onClick={this.toggleEdit}>Edit Profile</button>
-        {this.state.open ? (
-          <form onSubmit={this.editUser}>
-            <input
-              type="text"
-              value={this.state.credentials.user_name}
-              name="user_name"
-              placeholder="Change User_Name"
-              onChange={this.changeHandler}
-            />
-            <input
-              type="password"
-              value={this.state.credentials.password}
-              name="password"
-              placeholder="Change Password"
-              onChange={this.changeHandler}
-            />
-            <button>Submit</button>
-          </form>
-        ) : null}
+        <div className="user-edit">
+          <p className="user-name">
+            {this.props.userProfile.user_name}'s Profile
+          </p>
+          <button className="btn btn-user" onClick={this.toggleEdit}>
+            Edit Profile
+          </button>
+          {this.state.open ? (
+            <form onSubmit={this.editUser}>
+              <input
+                className="edit-profile"
+                type="text"
+                value={this.state.credentials.user_name}
+                name="user_name"
+                placeholder="Change User_Name"
+                onChange={this.changeHandler}
+              />
+              <input
+                className="edit-profile"
+                type="password"
+                value={this.state.credentials.password}
+                name="password"
+                placeholder="Change Password"
+                onChange={this.changeHandler}
+              />
+              <button className="btn">Submit</button>
+            </form>
+          ) : null}
+        </div>
         {this.props.userPost.length === 0 ? (
           <p>Sorry no post yet!</p>
         ) : (
           <div className="user-profile-posts">
+            <h3 className="user-profile-current">Current Posts: </h3>
             {this.props.userPost.map(user => (
               <div key={user.id}>
-                <button onClick={() => this.goToPost(user.id)}>
-                  Edit/Delete Post?
+                <button
+                  className="btn btn-edit-post"
+                  onClick={() => this.goToPost(user.id)}
+                >
+                  Edit/Delete Post
                 </button>
-                <h2>{user.title}</h2>
-                <img src={user.img_url} alt="my post illustration" />
-                <p>
-                  Location: {user.city}, {user.state}, {user.country}
+                <h2 className="user-profile-title">{user.title}</h2>
+                <img
+                  className="user-profile-img"
+                  src={user.img_url}
+                  alt="my post illustration"
+                />
+                <p className="user-profile-location">
+                  <strong>Location:</strong> {""}
+                  {user.city}, {user.state}, {user.country}
                 </p>
-                <p>Likes: {user.likes}</p>
-                <p>{user.story}</p>
+                <p className="user-profile-likes">
+                  <i className="far fa-heart" /> {user.likes} likes
+                </p>
+                <p className="user-profile-story">{user.story}</p>
               </div>
             ))}
           </div>

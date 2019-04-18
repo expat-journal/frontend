@@ -47,7 +47,7 @@ class Posts extends React.Component {
     this.props.history.push(`/user/${id}`);
   };
   render() {
-    const mappedPosts =
+    let mappedPosts =
       this.state.filteredPost.length > 0
         ? this.state.filteredPost
         : this.state.posts;
@@ -107,7 +107,7 @@ class Posts extends React.Component {
                 <italic>
                   {post.description}{" "}
                   <strong>
-                    {post.city}, {post.state}, {post.country}
+                    {post.city},{post.state},{post.country}
                   </strong>
                 </italic>
               </p>

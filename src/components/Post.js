@@ -88,48 +88,57 @@ class Post extends React.Component {
     const { story, img_url, title, user_name } = this.props.post;
 
     return (
-      <div>
+      <div className="single-post-container">
         {userId === postId && (
-          <button onClick={e => this.setPostActive(this.props.post)}>
+          <button
+            className="btn btn-edit"
+            onClick={e => this.setPostActive(this.props.post)}
+          >
             Edit
           </button>
         )}
-        {userId === postId && <button onClick={this.deletePost}>Delete</button>}
+        {userId === postId && (
+          <button onClick={this.deletePost} className="btn btn-delete">
+            Delete
+          </button>
+        )}
 
-        <h2>{title}</h2>
+        <h2 className="single-post-title">{title}</h2>
 
-        <p>By: {user_name}</p>
+        <p className="single-post-user">By: {user_name}</p>
         <img src={img_url} alt="post illustration" />
-        <span>
-          <i className="far fa-heart" onClick={this.increaseLikes} />
-          {this.state.likesCounter} likes
-        </span>
+        <div className="single-post-text-container">
+          <span className="single-post-span post-likes">
+            <i className="far fa-heart" onClick={this.increaseLikes} />
+            <span>{this.state.likesCounter} likes</span>
+          </span>
 
-        <span>
-          <i className="far fa-comment" /> {this.props.comments.length} comments
-        </span>
+          <p className="single-post-story">"{story}"</p>
+          <span className="single-post-span post-comments">
+            <i className="far fa-comment" />{" "}
+            <span>{this.props.comments.length} comments</span>
+          </span>
 
-        <p>"{story}"</p>
-
-        <div className="comment-section">
-          {this.props.comments.map(comment => (
-            <div key={comment.id}>
-              <p>
-                <strong>{comment.user_name} </strong>
-                {comment.comment}
-              </p>
-            </div>
-          ))}
-          <form onSubmit={this.submitComment}>
-            <input
-              type="text"
-              name="comment"
-              value={this.state.newComment.comment}
-              onChange={this.handleChanges}
-              placeholder="Write your comment"
-            />
-            <button>Add</button>
-          </form>
+          <div>
+            {this.props.comments.map(comment => (
+              <div className="comment-section" key={comment.id}>
+                <p>
+                  <strong>{comment.user_name}: </strong>
+                  {comment.comment}
+                </p>
+              </div>
+            ))}
+            <form onSubmit={this.submitComment}>
+              <input
+                type="text"
+                name="comment"
+                value={this.state.newComment.comment}
+                onChange={this.handleChanges}
+                placeholder="Write your comment"
+              />
+              <button className="btn">Add</button>
+            </form>
+          </div>
         </div>
       </div>
     );

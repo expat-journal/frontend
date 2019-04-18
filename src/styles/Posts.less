@@ -43,7 +43,7 @@
     width: 32%;
     text-align: center;
     //border: 1px solid red;
-    background: rgba(43, 43, 54, 0.16);
+    background: @green;
     border-radius: 10px;
     box-shadow: 1px 2px 3px grey;
     margin: 10px;
@@ -70,9 +70,8 @@
       height: auto;
       border-radius: 10px;
       box-shadow: 1px 2px 5px rgb(19, 18, 18);
-
       &:hover {
-        filter: blur(8px);
+        filter: grayscale(80%);
         cursor: pointer;
       }
     }

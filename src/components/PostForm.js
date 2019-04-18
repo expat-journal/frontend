@@ -46,6 +46,7 @@ class PostForm extends Component {
             value={title}
             placeholder="Title"
             onChange={this.changeHandler}
+            required
           />
           <input
             type="text"
@@ -53,6 +54,7 @@ class PostForm extends Component {
             value={description}
             placeholder="Description"
             onChange={this.changeHandler}
+            required
           />
           <input
             type="text"
@@ -60,6 +62,7 @@ class PostForm extends Component {
             value={img_url}
             placeholder="Image"
             onChange={this.changeHandler}
+            required
           />
           <input
             type="text"
@@ -67,6 +70,7 @@ class PostForm extends Component {
             value={city}
             placeholder="City"
             onChange={this.changeHandler}
+            required
           />
           <input
             type="text"
@@ -74,6 +78,7 @@ class PostForm extends Component {
             value={state}
             placeholder="State"
             onChange={this.changeHandler}
+            required
           />
           <input
             type="text"
@@ -81,6 +86,7 @@ class PostForm extends Component {
             value={country}
             placeholder="Country"
             onChange={this.changeHandler}
+            required
           />
           <textarea
             type="text"
@@ -88,6 +94,7 @@ class PostForm extends Component {
             value={story}
             placeholder="Story"
             onChange={this.changeHandler}
+            required
           />
           <button> Add Post </button>
         </form>

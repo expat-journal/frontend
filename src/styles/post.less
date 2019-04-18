@@ -1,0 +1,112 @@
+.single-post- {
+  &container {
+    background: white;
+    border-radius: 20px;
+
+    img {
+      max-width: 80%;
+      margin: 0 auto;
+      display: block;
+      border-radius: 5px;
+    }
+    .post-likes {
+      i {
+        color: red;
+        font-size: 1.7rem;
+        font-weight: bold;
+      }
+    }
+
+    .post-comments {
+      i {
+        color: @green;
+        font-size: 1.7rem;
+        font-weight: bold;
+        padding-bottom: 0.5rem;
+      }
+    }
+
+    .comment-section {
+      font-size: 3rem;
+      p {
+        padding-bottom: 0.9rem;
+      }
+    }
+    form {
+      padding-bottom: 2rem;
+      input {
+        width: 100%;
+        border-radius: 5px;
+        outline: none;
+        padding: 1.5rem;
+        font-size: 1.6rem;
+        font-family: "Reem Kufi", sans-serif;
+        margin-bottom: 1.8rem;
+      }
+      button {
+        display: block;
+        width: 10%;
+        margin: 0 auto;
+        padding: 1rem 0;
+      }
+    }
+  }
+  &title,
+  &user {
+    text-align: center;
+    padding: 1rem;
+    font-family: "Reem Kufi", sans-serif;
+  }
+
+  &title {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+  &user {
+    font-size: 1.8rem;
+  }
+  &span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 0.8rem 1rem;
+    i {
+      padding: 0 1rem;
+    }
+  }
+  &story {
+    font-size: 2rem;
+    width: 100%;
+    line-height: 1.5;
+    text-align: justify;
+  }
+}
+
+.single-post-text-container {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.btn {
+  height: 40px;
+  font-size: 1.8rem;
+  border-radius: 5px;
+  box-shadow: 2px 3px 5px rgb(39, 38, 38);
+  margin: 5px 0;
+  background: @light-teal;
+  border: none;
+  text-transform: uppercase;
+
+  &:hover {
+    cursor: pointer;
+    background: @mirage;
+    color: @white;
+  }
+}
+.btn-delete,
+.btn-edit {
+  margin-left: 2rem;
+}
