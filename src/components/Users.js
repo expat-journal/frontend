@@ -45,7 +45,6 @@ class Users extends Component {
         : undefined;
     user.password =
       this.state.password !== "" ? this.state.credentials.password : undefined;
-    console.log(user);
     this.props.updateUser(user);
     this.setState({
       ...this.state,
@@ -55,13 +54,16 @@ class Users extends Component {
       },
       open: false
     });
+    alert(
+      "You have successfully updated your account! Your page will now refresh."
+    );
+    setInterval(() => window.location.reload(), 1000);
   };
 
   goToPost = id => {
     this.props.history.push(`/posts/${id}`);
   };
   render() {
-    console.log(this.props.userProfile.id);
     return (
       <div className="user-profile">
         <p>{this.props.userProfile.user_name}</p>
@@ -85,22 +87,26 @@ class Users extends Component {
             <button>Submit</button>
           </form>
         ) : null}
-        <div className="user-profile-posts">
-          {this.props.userPost.map(user => (
-            <div key={user.id}>
-              <button onClick={() => this.goToPost(user.id)}>
-                Edit/Delete Post?
-              </button>
-              <h2>{user.title}</h2>
-              <img src={user.img_url} alt="my post illustration" />
-              <p>
-                Location: {user.city}, {user.state}, {user.country}
-              </p>
-              <p>Likes: {user.likes}</p>
-              <p>{user.story}</p>
-            </div>
-          ))}
-        </div>
+        {this.props.userPost.length === 0 ? (
+          <p>Sorry no post yet!</p>
+        ) : (
+          <div className="user-profile-posts">
+            {this.props.userPost.map(user => (
+              <div key={user.id}>
+                <button onClick={() => this.goToPost(user.id)}>
+                  Edit/Delete Post?
+                </button>
+                <h2>{user.title}</h2>
+                <img src={user.img_url} alt="my post illustration" />
+                <p>
+                  Location: {user.city}, {user.state}, {user.country}
+                </p>
+                <p>Likes: {user.likes}</p>
+                <p>{user.story}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     );
   }
