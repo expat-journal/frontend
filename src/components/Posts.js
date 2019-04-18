@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getPosts } from "../actions";
 import "../styles/Posts.scss";
+
 const Cryptr = require("cryptr");
 const cryptr = new Cryptr("myTotalySecretKey");
 class Posts extends React.Component {
