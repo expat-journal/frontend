@@ -11,7 +11,7 @@ class UpdateForm extends Component {
     img_url: this.props.activePost.img_url,
     city: this.props.activePost.city,
     state: this.props.activePost.state,
-    country: this.props.activePost.country,
+    country: this.props.activePost.country
   };
 
   changeHandler = ({ target: { name, value } }) => {
@@ -23,6 +23,9 @@ class UpdateForm extends Component {
   updatePost = e => {
     e.preventDefault();
     this.props.updatePost(this.state);
+    alert("Edit Confirmed!");
+    setInterval(() => window.location.reload(), 50);
+
     this.props.history.push("/posts");
   };
 
@@ -91,7 +94,9 @@ class UpdateForm extends Component {
           />
           <div className="btn-container">
             <button className="btn"> Update Post </button>
-            <Link to="/posts"><button className="btn">Cancel</button></Link>
+            <Link to="/posts">
+              <button className="btn">Cancel</button>
+            </Link>
           </div>
         </form>
       </div>
@@ -108,5 +113,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {updatePost}
+  { updatePost }
 )(UpdateForm);

@@ -24,7 +24,7 @@ class PostForm extends Component {
     this.props.newPost(this.state);
     alert("Successfully added Post. Let's check it out!");
     this.props.history.push("/posts");
-    setInterval(() => window.location.reload(), 800);
+    setInterval(() => window.location.reload(), 500);
   };
 
   render() {
@@ -61,7 +61,7 @@ class PostForm extends Component {
             type="text"
             name="img_url"
             value={img_url}
-            placeholder="Image"
+            placeholder="Image URL"
             onChange={this.changeHandler}
             required
           />
@@ -99,7 +99,9 @@ class PostForm extends Component {
           />
           <div className="btn-container">
             <button className="btn"> Add Post </button>
-            <Link to="/posts"><button className="btn">Cancel</button></Link>
+            <Link to="/posts">
+              <button className="btn">Cancel</button>
+            </Link>
           </div>
         </form>
       </div>

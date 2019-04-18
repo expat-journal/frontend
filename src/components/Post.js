@@ -55,6 +55,7 @@ class Post extends React.Component {
         post_id: ""
       }
     });
+    setInterval(() => window.location.reload(), 250);
   };
   // setting Active Post for update
   setPostActive = post => {
@@ -65,7 +66,9 @@ class Post extends React.Component {
   // deleting post
   deletePost = id => {
     if (window.confirm("Are you sure you want to delete this post")) {
-      this.props.deletePost(this.props.post.id);
+      this.props
+        .deletePost(this.props.post.id)
+        .then(setInterval(() => window.location.reload(), 250));
     }
     this.props.history.push("/posts");
   };
@@ -113,7 +116,7 @@ class Post extends React.Component {
             <span>{this.state.likesCounter} likes</span>
           </span>
 
-          <p className="single-post-story">"{story}"</p>
+          <p className="single-post-story">{story}</p>
           <span className="single-post-span post-comments">
             <i className="far fa-comment" />{" "}
             <span>{this.props.comments.length} comments</span>

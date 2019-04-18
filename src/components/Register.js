@@ -31,7 +31,7 @@ class Register extends Component {
     const { user_name, password } = this.state;
     return (
       <div className=" form-container home-form">
-        <div >
+        <div>
           <h2> Register</h2>
           <p> Please fill out the fields below: </p>
         </div>
@@ -53,14 +53,14 @@ class Register extends Component {
           <button className="btn submit-btn">Submit</button>
 
           {this.props.userRegistered && ( // register works prompt
-            <p>
+            <p className="register-success">
               You have successfully registered! {this.props.registeredUser}{" "}
               Please <Link to="/login">log in</Link>
             </p>
           )}
-          {!this.props.registerUser && ( // registering fails error
-            <p>
-              Sorry please try again or <Link to="/login">log in</Link> with
+          {this.props.error && ( // registering fails error
+            <p className="register-error">
+              Sorry, please try again or <Link to="/login">log in</Link> with
               your credentials.
             </p>
           )}
@@ -73,7 +73,8 @@ class Register extends Component {
 const mapStateToProps = state => {
   return {
     userRegistered: state.userRegistered,
-    registeredUser: state.registeredUser
+    registeredUser: state.registeredUser,
+    error: state.error
   };
 };
 

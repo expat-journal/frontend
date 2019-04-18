@@ -100,7 +100,7 @@ const rootReducer = (state = initialState, action) => {
     case REGISTER_FAILURE:
       return {
         ...state,
-        error: "Something went wrong",
+        error: action.payload.response.data.message,
         registeringUser: false,
         userRegistered: false
       };

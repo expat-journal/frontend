@@ -96,10 +96,10 @@ class Users extends Component {
           ) : null}
         </div>
         {this.props.userPost.length === 0 ? (
-          <p>Sorry no post yet!</p>
+          <p className="no-post"> No post yet! Be sure to post your stories!</p>
         ) : (
           <div className="user-profile-posts">
-            <h3 className="user-profile-current">Current Posts: </h3>
+            <h3 className="user-profile-current">My Current Posts: </h3>
             {this.props.userPost.map(user => (
               <div key={user.id}>
                 <button
