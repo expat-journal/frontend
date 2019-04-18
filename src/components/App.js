@@ -12,7 +12,7 @@ import Users from "./Users";
 import PrivateRoute from "./PrivateRoute"; // redirecting to login for now
 
 // Styles
-import "../styles/App.css";
+import "../styles/App.scss";
 
 class App extends Component {
   render() {

@@ -1,0 +1,84 @@
+.posts-page-container h1 {
+  width: 100%;
+  text-align: center;
+  margin: 50px 0;
+  font-size: 5.5rem;
+  //font-family: 'Gochi Hand', cursive;
+  //font-family: 'Amaranth', sans-serif;
+  font-family: "Reem Kufi", sans-serif;
+  text-shadow: 1px 2px 3px rgba(32, 178, 171, 0.226);
+}
+
+.top-section-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  input {
+    width: 50%;
+    text-align: center;
+    font-size: 1.7rem;
+    background: rgba(184, 240, 255, 0.39);
+    border-radius: 5px;
+    border: lightgrey;
+    box-shadow: 1px 2px 3px gray;
+  }
+}
+
+// Could be more responsive
+.posts-list-container {
+  margin: 30px auto 0;
+  width: 100%;
+  min-height: 100vh;
+  height: 3500px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  //border: 3px solid teal;
+
+  .each-post {
+    width: 32%;
+    text-align: center;
+    //border: 1px solid red;
+    background: rgba(43, 43, 54, 0.16);
+    border-radius: 10px;
+    box-shadow: 1px 2px 3px grey;
+    margin: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    h2,
+    h3,
+    img,
+    p,
+    button {
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: "Reem Kufi", sans-serif;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 1px 2px 5px rgb(19, 18, 18);
+
+      &:hover {
+        filter: blur(8px);
+        cursor: pointer;
+      }
+    }
+
+    .view-story-btn {
+      font-size: 1.5rem;
+    }
+  }
+}
