@@ -109,7 +109,14 @@ class Post extends React.Component {
         <h2 className="single-post-title">{title}</h2>
 
         <p className="single-post-user">By: {user_name}</p>
-        <img src={img_url} alt="post illustration" />
+        {{ img_url: "test.com" } ? (
+          <img
+            src="https://picsum.photos/1000/1000/?random"
+            alt="post illustration"
+          />
+        ) : (
+          <img src={img_url} alt="post illustration" />
+        )}
         <div className="single-post-text-container">
           <span className="single-post-span post-likes">
             <i className="far fa-heart" onClick={this.increaseLikes} />
