@@ -46,6 +46,8 @@
 .home-form {
   background: white;
   border-radius: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   margin: 0 auto;
   padding-top: 3%;
 
@@ -73,4 +75,24 @@
   cursor: pointer;
   background: @mirage;
   color: @white;
+}
+
+.popup-parent {
+  position: relative;
+}
+
+.popup {
+  position: absolute;
+  top: 55.6%;
+  right: 18%;
+  width: 15%;
+  height: 5%;
+  background: @green;
+  color: white;
+  display: block;
+  padding: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 2px 5px 12px @mirage;
+  font-size: 1.5rem;
 }
