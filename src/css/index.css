@@ -193,6 +193,8 @@ strong {
 .container {
   background: white;
   border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   margin: 0 auto;
   padding: 20px;
 }
@@ -385,6 +387,8 @@ strong {
 .home-form {
   background: white;
   border-radius: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   margin: 0 auto;
   padding-top: 3%;
 }
