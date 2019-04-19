@@ -426,6 +426,7 @@ strong {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   box-shadow: 2px 5px 12px #182628;
+  font-size: 1.5rem;
 }
 .single-post-container {
   background: white;

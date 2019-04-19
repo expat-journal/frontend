@@ -66,7 +66,7 @@ class PostForm extends Component {
             className="popup-parent"
           />
           <span className="popup">
-            No img URL? keep default text or add your own
+            No IMAGE URL? Keep default text or add your own
           </span>
           <input
             type="text"

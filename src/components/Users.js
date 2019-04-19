@@ -109,11 +109,19 @@ class Users extends Component {
                   Edit/Delete Post
                 </button>
                 <h2 className="user-profile-title">{user.title}</h2>
-                <img
-                  className="user-profile-img"
-                  src={user.img_url}
-                  alt="my post illustration"
-                />
+                {user.img_url === "test.com" ? (
+                  <img
+                    src="https://picsum.photos/1000/1000/?random"
+                    alt="post illustration"
+                    className="user-profile-img"
+                  />
+                ) : (
+                  <img
+                    className="user-profile-img"
+                    src={user.img_url}
+                    alt="my post illustration"
+                  />
+                )}
                 <p className="user-profile-location">
                   <strong>Location:</strong> {""}
                   {user.city}, {user.state}, {user.country}
