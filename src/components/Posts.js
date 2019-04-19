@@ -98,11 +98,18 @@ class Posts extends React.Component {
             <div key={post.id} className="each-post">
               <h2>{post.title}</h2>
               <h3>By: {post.user_name}</h3>
-              <img
-                src={post.img_url}
-                alt="To Be Uploaded"
-                onClick={() => this.showPost(post.id)}
-              />
+              {post.img_url === "test.com" ? (
+                <img
+                  src="https://picsum.photos/1000/1000/?random"
+                  alt="post illustration"
+                />
+              ) : (
+                <img
+                  src={post.img_url}
+                  alt="To Be Uploaded"
+                  onClick={() => this.showPost(post.id)}
+                />
+              )}
               <p>
                 <italic>
                   {post.description}{" "}
