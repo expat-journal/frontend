@@ -7,7 +7,7 @@ class PostForm extends Component {
     title: "",
     description: "",
     story: "",
-    img_url: "",
+    img_url: "test.com",
     city: "",
     state: "",
     country: ""
@@ -63,8 +63,11 @@ class PostForm extends Component {
             value={img_url}
             placeholder="Image URL"
             onChange={this.changeHandler}
-            required
+            className="popup-parent"
           />
+          <span className="popup">
+            No img URL? keep default text or add your own
+          </span>
           <input
             type="text"
             name="city"
