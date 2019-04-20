@@ -49,6 +49,9 @@ class Post extends React.Component {
         post_id: ""
       }
     });
+  }
+
+  
   // setting Active Post for update
   setPostActive = post => {
     this.props.setActivePost(post);
@@ -61,7 +64,7 @@ class Post extends React.Component {
       this.props.deletePost(this.props.post.id);
     };
     this.props.history.push("/posts");
-  };
+  }
 
   render() {
     const postId = this.props.post.user_id;
@@ -133,7 +136,7 @@ class Post extends React.Component {
     );
   }
 }
-}
+
 
 const mapStateToProps = state => {
   console.log("Post:", state.post);

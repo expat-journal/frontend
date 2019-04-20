@@ -82,7 +82,6 @@ export const getComments = id => dispatch => {
     );
 };
 
-<<<<<<< HEAD
 
 // newComment action suite for Posts.js
 
@@ -103,7 +102,6 @@ export const newComment = comment => dispatch => {
     dispatch({ type: NEW_COMMENT_FAILURE, payload: err.response });
   })
 }
-=======
 // updatePost action for Posts.js
 export const UPDATE_POST_START = "UPDATE_POST_START";
 export const UPDATE_POST_SUCCESS = "UPDATE_POST_SUCCESS";
@@ -150,4 +148,3 @@ export const deletePost = id => dispatch => {
   })   
 }
  
->>>>>>> c51d27dab17dd306c2865917161e1c21df04b976

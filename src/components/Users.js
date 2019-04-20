@@ -15,6 +15,8 @@ class Users extends Component {
     this.props.getUser(this.props.match.params.id);
   }
 
+  compon
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.userProfile !== this.props.userProfile) {
       this.setState({ credentials: this.props.userProfile });
