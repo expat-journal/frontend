@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { registerUser } from "../actions/index";
+import { registerUser } from "../actions/register";
 
 class Register extends Component {
   state = {
@@ -30,12 +30,12 @@ class Register extends Component {
     console.log(this.props);
     const { user_name, password } = this.state;
     return (
-      <div>
+      <div className=" form-container home-form">
         <div>
-          <h1> Register</h1>
+          <h2> Register</h2>
           <p> Please fill out the fields below: </p>
         </div>
-        <form onSubmit={this.registerUser}>
+        <form className="form" onSubmit={this.registerUser}>
           <input
             type="text"
             placeholder="Username"
@@ -50,12 +50,18 @@ class Register extends Component {
             value={password}
             onChange={this.changeHandler}
           />
-          <button>Submit</button>
+          <button className="btn submit-btn">Submit</button>
 
-          {this.props.userRegistered && (
-            <p>
+          {this.props.userRegistered && ( // register works prompt
+            <p className="register-success">
               You have successfully registered! {this.props.registeredUser}{" "}
               Please <Link to="/login">log in</Link>
+            </p>
+          )}
+          {this.props.error && ( // registering fails error
+            <p className="register-error">
+              Sorry, please try again or <Link to="/login">log in</Link> with
+              your credentials.
             </p>
           )}
         </form>
@@ -66,8 +72,9 @@ class Register extends Component {
 
 const mapStateToProps = state => {
   return {
-    userRegistered: state.userRegistered,
-    registeredUser: state.registeredUser
+    userRegistered: state.usersReducer.userRegistered,
+    registeredUser: state.usersReducer.registeredUser,
+    error: state.usersReducer.error
   };
 };
 

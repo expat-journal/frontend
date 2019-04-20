@@ -1,9 +1,110 @@
 .App {
-    padding: 10%;
+    padding: 0% 10% 10%;
+    background: $mirage;
+    min-height: 100vh;
 
     nav {
         display: flex;
         justify-content: space-evenly;
+        align-items: center;
         margin-bottom: 20px;
+        background: white;
+        height: 80px;
+    }
+
+    a {
+        text-decoration: none;
+        font-size: 1.8rem;
+        color: $mirage;
+    }
+
+    a:hover {
+        font-weight: bold;
+    }
+
+    .active-nav {
+        background: $mirage;
+        color: white;
+        padding: 15px 40px;
+        border-radius: 10px;
+    }
+}
+
+.container {
+    background: white;
+    border-radius: 10px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin: 0 auto;
+    padding: 20px;
+
+    .btn {
+        height: 40px;
+        font-size: 1.8rem;
+        border-radius: 5px;
+        box-shadow: 2px 3px 5px rgb(39, 38, 38);
+        margin: 5px 0;
+        background: $light-teal;
+        border: none;
+    }
+
+    .btn:hover {
+        cursor: pointer;
+        background: $mirage;
+        color: $white;
+    }
+}
+
+.home-nav {
+    visibility: hidden;
+}
+.home-container {
+    //min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        .h1-styles;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 3rem;
+        line-height: 50px;
+    }
+}
+
+.home-btn {
+    margin-top: 2%;
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .register-btn,
+    .login-btn {
+        width: 200px;
+        height: 60px;
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+}
+.current-user {
+    font-family: "Reem Kufi", sans-serif;
+    font-size: 2.5rem;
+    color: $mirage;
+    font-weight: bold;
+}
+
+.register-error,
+.register-success {
+    font-size: 2rem;
+    color: $mirage;
+    padding: 2rem;
+    font-weight: bold;
+    a {
+        color: $green;
+        text-transform: uppercase;
     }
 }

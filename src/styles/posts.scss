@@ -1,0 +1,78 @@
+.posts-page-container h1 {
+  .h1-styles;
+}
+
+.top-section-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  input {
+    width: 50%;
+    text-align: center;
+    font-size: 1.7rem;
+    background: rgba(184, 255, 249, 0.39);
+    //background: @light-teal;
+    border-radius: 5px;
+    border: 1px solid rgb(231, 226, 226);
+    box-shadow: 1px 2px 3px lightgray;
+  }
+}
+
+// Could be more responsive
+.posts-list-container {
+  margin: 30px auto 0;
+  width: 100%;
+  min-height: 100vh;
+  height: 3500px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  //border: 3px solid teal;
+
+  .each-post {
+    width: 29%;
+    text-align: center;
+    //border: 1px solid red;
+    background: rgba(245, 216, 137, 0.11);
+    border-radius: 10px;
+    box-shadow: 1px 2px 3px grey;
+    margin: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    h2,
+    h3,
+    img,
+    p,
+    button {
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: "Reem Kufi", sans-serif;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 1px 2px 5px rgb(19, 18, 18);
+      &:hover {
+        filter: grayscale(90%);
+        transform: scale(0.99);
+        cursor: pointer;
+      }
+    }
+
+    .view-story-btn {
+      font-size: 1.5rem;
+    }
+  }
+}

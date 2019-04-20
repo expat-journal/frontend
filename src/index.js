@@ -10,21 +10,21 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 
 // Reducers
-import rootReducer from "./reducers/index";
+import rootReducer from "./reducers/rootReducer";
 
 // Components
 import App from "./components/App";
 
 // Styles
-import "./index.css";
+import "./css/index.css";
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+const store = createStore( rootReducer, applyMiddleware( thunk, logger ) );
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>,
-  document.getElementById("root")
+    <Provider store={ store }>
+        <Router>
+            <App/>
+        </Router>
+    </Provider>,
+    document.getElementById( "root" )
 );

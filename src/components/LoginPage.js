@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { login } from "../actions";
+import { login } from "../actions/login";
 
 class LoginPage extends React.Component {
   state = {
@@ -39,9 +39,10 @@ class LoginPage extends React.Component {
       );
     }
     return (
-      <div className="container login-container">
-        <h2>Login To View Posts</h2>
-        <form className="Login-Form" onSubmit={this.submitForm}>
+      <div className="form-container home-form">
+        <h2>Login</h2>
+        <p>Please login to view posts</p>
+        <form className="form" onSubmit={this.submitForm}>
           <input
             type="text"
             name="user_name"
@@ -56,7 +57,7 @@ class LoginPage extends React.Component {
             onChange={this.handleChanges}
             placeholder="Password"
           />
-          <button className="btn login-btn">Login</button>
+          <button className="btn submit-btn">Login</button>
         </form>
       </div>
     );
@@ -64,8 +65,8 @@ class LoginPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  loggingIn: state.loggingIn,
-  activeUser: state.activeUser
+  loggingIn: state.loginReducer.loggingIn,
+  activeUser: state.usersReducer.activeUser
 });
 
 export default connect(

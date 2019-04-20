@@ -1,0 +1,98 @@
+.form-container {
+  text-align: center;
+
+  h1 {
+    .h1-styles;
+  }
+
+  .form {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  input,
+  textarea {
+    height: 50px;
+    width: 40%;
+    color: $mirage;
+    padding-left: 15px;
+    font-size: 1.7rem;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    box-shadow: 2px 3px 5px gray;
+    margin-bottom: 20px;
+  }
+
+  textarea {
+    height: 100px;
+  }
+}
+
+.btn-container {
+  //border: 1px solid red;
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 3%;
+
+  .btn {
+    width: 200px;
+  }
+}
+
+.home-form {
+  background: white;
+  border-radius: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin: 0 auto;
+  padding-top: 3%;
+
+  h2,
+  p {
+    margin-bottom: 15px;
+  }
+
+  .form {
+    min-height: auto;
+  }
+}
+.submit-btn {
+  height: 40px;
+  width: 100px;
+  font-size: 1.8rem;
+  border-radius: 5px;
+  box-shadow: 2px 3px 5px rgb(39, 38, 38);
+  margin: 20px 0;
+  background: $light-teal;
+  border: none;
+}
+
+.submit-btn:hover {
+  cursor: pointer;
+  background: $mirage;
+  color: $white;
+}
+
+.popup-parent {
+  position: relative;
+}
+
+.popup {
+  position: absolute;
+  top: 55.6%;
+  right: 18%;
+  width: 15%;
+  height: 5%;
+  background: $green;
+  color: white;
+  display: block;
+  padding: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 2px 5px 12px $mirage;
+  font-size: 1.5rem;
+}

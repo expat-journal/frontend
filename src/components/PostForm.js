@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { newPost } from "../actions/index";
+import { newPost } from "../actions/postsData";
 class PostForm extends Component {
   state = {
     title: "",
     description: "",
     story: "",
-    img_url: "",
+    img_url: "test.com",
     city: "",
     state: "",
     country: ""
@@ -21,7 +22,9 @@ class PostForm extends Component {
   addNewPost = e => {
     e.preventDefault();
     this.props.newPost(this.state);
-    this.props.history.push('/user/:id')
+    alert("Successfully added Post. Let's check it out!");
+    this.props.history.push("/posts");
+    setInterval(() => window.location.reload(), 500);
   };
 
   render() {
@@ -35,15 +38,16 @@ class PostForm extends Component {
       country
     } = this.state;
     return (
-      <div>
+      <div className="container form-container">
         <h1> Add New Post </h1>
-        <form onSubmit={this.addNewPost}>
+        <form className="form" onSubmit={this.addNewPost}>
           <input
             type="text"
             name="title"
             value={title}
             placeholder="Title"
             onChange={this.changeHandler}
+            required
           />
           <input
             type="text"
@@ -51,20 +55,26 @@ class PostForm extends Component {
             value={description}
             placeholder="Description"
             onChange={this.changeHandler}
+            required
           />
           <input
             type="text"
             name="img_url"
             value={img_url}
-            placeholder="Image"
+            placeholder="Image URL"
             onChange={this.changeHandler}
+            className="popup-parent"
           />
+          <span className="popup">
+            No IMAGE URL? Keep default text or add your own
+          </span>
           <input
             type="text"
             name="city"
             value={city}
             placeholder="City"
             onChange={this.changeHandler}
+            required
           />
           <input
             type="text"
@@ -72,6 +82,7 @@ class PostForm extends Component {
             value={state}
             placeholder="State"
             onChange={this.changeHandler}
+            required
           />
           <input
             type="text"
@@ -79,6 +90,7 @@ class PostForm extends Component {
             value={country}
             placeholder="Country"
             onChange={this.changeHandler}
+            required
           />
           <textarea
             type="text"
@@ -86,8 +98,14 @@ class PostForm extends Component {
             value={story}
             placeholder="Story"
             onChange={this.changeHandler}
+            required
           />
-          <button> Add Post </button>
+          <div className="btn-container">
+            <button className="btn"> Add Post </button>
+            <Link to="/posts">
+              <button className="btn">Cancel</button>
+            </Link>
+          </div>
         </form>
       </div>
     );
@@ -96,7 +114,7 @@ class PostForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    posts: state.posts
+    posts: state.postsReducer.posts
   };
 };
 
