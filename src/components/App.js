@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Route, Link, NavLink } from "react-router-dom";
 import {
-    getJasonWebToken, getUserFromLocalStorage
+    getJasonWebToken, getUserFromLocalStorage, checkLocalStorageForInfor
 } from "../utils/encryptDecrypt";
-
+import { connect } from "react-redux";
 // Components
 import LoginPage from "./LoginPage";
 import Posts from "./Posts";
@@ -12,17 +12,23 @@ import PostForm from "./PostForm";
 import UpdateForm from "./UpdateForm";
 import Register from "./Register";
 import Users from "./Users";
+import { setJwtToken, setUser } from "../actions";
 import PrivateRoute from "./PrivateRoute"; // redirecting to login for now
 
 // Styles
 import "../css/index.css";
-//import "../styles/App.css";
 
+//import "../styles/App.css";
 
 class App extends Component {
     
     componentDidMount() {
-    
+        
+        const info = checkLocalStorageForInfor();
+        if ( info ) {
+            setUser( info.user );
+            setJwtToken( info.token );
+        }
     }
     
     // Clears localstorage and logs out user
@@ -92,4 +98,8 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = state => ( {
+    user: state.usersReducer.user
+} );
+
+export default connect( mapStateToProps, { setUser } )( App );

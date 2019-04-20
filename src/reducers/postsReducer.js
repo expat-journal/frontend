@@ -4,7 +4,7 @@ import {
     GET_POSTS_START, GET_POSTS_SUCCESS, NEW_POST_FAILURE, NEW_POST_START,
     NEW_POST_SUCCESS, SET_ACTIVE_POST, UPDATE_POST_FAILURE, UPDATE_POST_START,
     UPDATE_POST_SUCCESS,
-} from "../actions/postsData";
+} from "../actions";
 
 const initialState = {
     posts:         [],

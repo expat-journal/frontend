@@ -6,7 +6,7 @@ import {
     setActivePost,
     deletePost,
 } from "../actions/postsData";
-import { newComment, getComments } from "../actions/comments";
+import { newComment, getComments } from "../actions";
 
 const Cryptr = require( "cryptr" );
 const cryptr = new Cryptr( "myTotalySecretKey" );

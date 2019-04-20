@@ -1,12 +1,14 @@
 import {
-    GET_USER_FAILURE, GET_USER_START, GET_USER_SUCCESS, UPDATE_USER_FAILURE,
-    UPDATE_USER_START, UPDATE_USER_SUCCESS
-} from "../actions/users";
+    GET_USER_FAILURE, GET_USER_START, GET_USER_SUCCESS, SET_USER,
+    UPDATE_USER_FAILURE,
+    UPDATE_USER_START, UPDATE_USER_SUCCESS, SET_TOKEN
+} from "../actions";
 
 const initialState = {
     gettingUser: false,
     activeUser:  {},
-    userProfile: {},
+    user:        {},
+    jwtToken:    "",
     updateUser:  false,
 };
 
@@ -52,6 +54,17 @@ const usersReducer = ( state = initialState, action ) => {
                 error:        "Something went wrong",
                 updateUser:   false,
                 userToUpdate: []
+            };
+        
+        case SET_USER:
+            return {
+                ...state,
+                user: action.payload,
+            };
+        case SET_TOKEN:
+            return {
+                ...state,
+                token: action.payload,
             };
         default:
             return state;

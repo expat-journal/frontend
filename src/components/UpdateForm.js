@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { updatePost } from "../actions/postsData";
+import { updatePost } from "../actions";
 
 class UpdateForm extends Component {
     state = {

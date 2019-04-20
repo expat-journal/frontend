@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { getPosts } from "../actions/postsData";
+import { getPosts } from "../actions";
 
 const Cryptr = require( "cryptr" );
 const cryptr = new Cryptr( "myTotalySecretKey" );

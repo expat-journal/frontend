@@ -1,7 +1,7 @@
 import {
     NEW_COMMENT_FAILURE, GET_COMMENTS_FAILURE, GET_COMMENTS_START,
     GET_COMMENTS_SUCCESS, NEW_COMMENT_START, NEW_COMMENT_SUCCESS
-} from "../actions/comments";
+} from "../actions";
 
 const initialState = {
     comments:       [],
