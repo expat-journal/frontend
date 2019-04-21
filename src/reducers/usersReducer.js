@@ -1,70 +1,73 @@
 import {
     GET_USER_FAILURE, GET_USER_START, GET_USER_SUCCESS, SET_USER,
-    UPDATE_USER_FAILURE,
-    UPDATE_USER_START, UPDATE_USER_SUCCESS, SET_TOKEN
+    UPDATE_USER_FAILURE, UPDATE_USER_START, UPDATE_USER_SUCCESS, SET_TOKEN,
+    SET_USER_AND_TOKEN
 } from "../actions";
 
 const initialState = {
     gettingUser: false,
-    activeUser:  {},
-    user:        {},
-    jwtToken:    "",
-    updateUser:  false,
+    activeUser: {},
+    user: {},
+    token: null,
+    updateUser: false,
+    loggedIn: false,
 };
 
 const usersReducer = ( state = initialState, action ) => {
-    switch ( action.type ) {
+    
+    switch( action.type ){
         
         case GET_USER_START:
             return {
-                ...state,
-                error:       null,
-                gettingUser: true
+                ...state, error: null, gettingUser: true
             };
         case GET_USER_SUCCESS:
             return {
                 ...state,
-                error:       null,
+                error: null,
                 userProfile: action.payload,
                 gettingUser: false
             };
         case GET_USER_FAILURE:
             return {
                 ...state,
-                error:       "Something went wrong",
+                error: "Something went wrong",
                 gettingUser: false,
-                activeUser:  {}
+                activeUser: {}
             };
         case UPDATE_USER_START:
             return {
-                ...state,
-                error:      null,
-                updateUser: true
+                ...state, error: null, updateUser: true
             };
         case UPDATE_USER_SUCCESS:
             return {
                 ...state,
-                error:        null,
+                error: null,
                 userToUpdate: action.payload,
-                updateUser:   false
+                updateUser: false
             };
         case UPDATE_USER_FAILURE:
             return {
                 ...state,
-                error:        "Something went wrong",
-                updateUser:   false,
+                error: "Something went wrong",
+                updateUser: false,
                 userToUpdate: []
             };
         
         case SET_USER:
             return {
-                ...state,
-                user: action.payload,
+                ...state, user: action.payload,
             };
         case SET_TOKEN:
             return {
+                ...state, token: action.payload, loggedIn: true,
+            };
+        case SET_USER_AND_TOKEN:
+            return {
                 ...state,
-                token: action.payload,
+                token: action.payload.token,
+                user: action.payload.user,
+                loggedIn: true
             };
         default:
             return state;

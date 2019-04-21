@@ -1,32 +1,24 @@
 import { LOGIN_FAIL, LOGIN_START, LOGIN_SUCCESS } from "../actions";
 
 const initialState = {
-    loggingIn:   false,
-    error:       null,
-    gettingUser: false,
+    loggingIn: false, loggedInSuccessfully: false, error: null,
 };
 
 const loginReducer = ( state = initialState, action ) => {
-    switch ( action.type ) {
+    switch( action.type ){
         case LOGIN_START:
             return {
-                ...state,
-                loggingIn: true
+                ...state, loggingIn: true
             };
         case LOGIN_SUCCESS:
             return {
-                ...state,
-                loggingIn:  false,
-                activeUser: {
-                    user_name: action.credentials,
-                    user_id:   action.user_id
-                }
+                ...state, loggingIn: false, loggedInSuccessfully: true
             };
         case LOGIN_FAIL:
             return {
                 ...state,
-                loggingIn:  false,
-                error:      action.payload,
+                loggingIn: false,
+                error: action.payload,
                 activeUser: {}
             };
         default:

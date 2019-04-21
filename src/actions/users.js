@@ -6,6 +6,7 @@ export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const GET_USER_FAILURE = "GET_USER_FAILURE";
 export const SET_USER = "SET_USER";
 export const SET_TOKEN = "SET_TOKEN";
+export const SET_USER_AND_TOKEN = "SET_USER_AND_TOKEN";
 
 export const getUser = id => dispatch => {
     dispatch( { type: GET_USER_START } );
@@ -19,6 +20,10 @@ export const getUser = id => dispatch => {
         catch( err => {
             dispatch( { type: GET_USER_FAILURE, payload: err.response } );
         } );
+};
+
+const setUserAndToken = info => dispatch => {
+  dispatch({type: SET_USER_AND_TOKEN, payload: info})  ;
 };
 
 export const setUser = user => dispatch => {

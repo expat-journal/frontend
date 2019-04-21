@@ -3,33 +3,29 @@ import {
 } from "../actions";
 
 const initialState = {
-    registeringUser: false,
-    error:           null,
-    userRegistered:  null,
+    registeringUser: false, error: null, userRegistered: false,
 };
 
 const registerReducer = ( state = initialState, action ) => {
-    switch ( action.type ) {
+    switch( action.type ){
         case REGISTER_START:
             return {
-                ...state,
-                error:           null,
-                registeringUser: true
+                ...state, error: null, registeringUser: true
             };
         case REGISTER_SUCCESS:
             return {
                 ...state,
-                error:           null,
+                error: null,
                 registeringUser: false,
-                userRegistered:  true,
-                registeredUser:  action.user
+                userRegistered: true,
+                registeredUser: action.user
             };
         case REGISTER_FAILURE:
             return {
                 ...state,
-                error:           action.payload.response.data.message,
+                error: action.payload,
                 registeringUser: false,
-                userRegistered:  false
+                userRegistered: false
             };
         default:
             return state;

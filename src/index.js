@@ -20,11 +20,8 @@ import "./css/index.css";
 
 const store = createStore( rootReducer, applyMiddleware( thunk, logger ) );
 
-ReactDOM.render(
+ReactDOM.render( <Router>
     <Provider store={ store }>
-        <Router>
-            <App/>
-        </Router>
-    </Provider>,
-    document.getElementById( "root" )
-);
+        <App/>
+    </Provider>
+</Router>, document.getElementById( "root" ) );

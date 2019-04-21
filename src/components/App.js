@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Route, Link, NavLink } from "react-router-dom";
+import { Route, Link, NavLink, withRouter } from "react-router-dom";
 import {
-    getJasonWebToken, getUserFromLocalStorage, checkLocalStorageForInfor
+    checkLocalStorageForInfo, removeUserAndTokenFromLocalStorage
 } from "../utils/encryptDecrypt";
 import { connect } from "react-redux";
 // Components
@@ -20,86 +20,99 @@ import "../css/index.css";
 
 //import "../styles/App.css";
 
-class App extends Component {
+class App extends Component{
     
-    componentDidMount() {
-        
-        const info = checkLocalStorageForInfor();
-        if ( info ) {
-            setUser( info.user );
-            setJwtToken( info.token );
+    state = {
+        location: "",
+    };
+    
+    componentDidMount(){
+        debugger;
+        const info = checkLocalStorageForInfo();
+        if( info.user ){
+            this.props.setUser( info.user );
+        }
+        if( info.jwt ){
+            this.props.setJwtToken( info.jwt );
+            this.props.history.push( "/posts" );
         }
     }
     
     // Clears localstorage and logs out user
     logOutHandler = () => {
-        localStorage.clear();
+        removeUserAndTokenFromLocalStorage();
         alert( "Thanks for visiting! Come back soon!" );
         setInterval( () => window.location.reload(), 900 );
     };
     
-    render() {
-        
-        return (
-            <div className="App">
-                { this.props.user ? (
-                    <nav>
-                        <p className="current-user">Welcome Expat</p>
-                        <NavLink to="/posts" activeClassName="active-nav">
-                            Posts
-                        </NavLink>
-                        <NavLink to="/post-form" activeClassName="active-nav">
-                            Post Your Story
-                        </NavLink>
-                        <NavLink
-                            to="/login"
-                            activeClassName="active-nav"
-                            onClick={ this.logOutHandler }
-                        >
-                            Log Out
-                        </NavLink>
-                    </nav>
-                ) : (
-                      <div>
-                          <nav className="home-nav">
-                              <Link to="/register">Register</Link>
-                              <Link to="/login">Login</Link>
-                          </nav>
-                          <div className="container home-container">
-                              <h1>Welcome to Expat Journal!</h1>
-                              <h2>
-                                  If you're a new user, please register.
-                                  <br/> If you've already registered, please
-                                  login to view posts.
-                              </h2>
-                              <div className="home-btn">
-                                  <Link to="/register" className="home-btn">
-                                      <button
-                                          className="btn register-btn">Register
-                                      </button>
-                                  </Link>
-                                  <Link to="/login">
-                                      <button className="btn login-btn">Login
-                                      </button>
-                                  </Link>
-                              </div>
-                          </div>
-                      </div>
-                  ) }
-                <Route path="/login" component={ LoginPage }/>
-                <Route path="/register" component={ Register }/>
-                <PrivateRoute exact path="/posts" component={ Posts }/>
-                <PrivateRoute path="/posts/:id" component={ Post }/>
-                <PrivateRoute path="/post-form" component={ PostForm }/>
-                <PrivateRoute exact path="/user/:id" component={ Users }/>
-                <PrivateRoute path="/update-form" component={ UpdateForm }/>
-            </div>
-        );
+    render(){
+        debugger;
+        return ( <div className="App">
+            { this.props.loggedIn ? ( <nav>
+                <p className="current-user">Welcome Expat</p>
+                <NavLink to="/posts" activeClassName="active-nav">
+                    Posts
+                </NavLink>
+                <NavLink to="/post-form" activeClassName="active-nav">
+                    Post Your Story
+                </NavLink>
+                <NavLink
+                    to="/login"
+                    activeClassName="active-nav"
+                    onClick={ this.logOutHandler }
+                >
+                    Log Out
+                </NavLink>
+            </nav> ) : ( <div>
+                <nav className="home-nav">
+                    <Link to="/register">Register</Link>
+                    <Link to="/login">Login</Link>
+                </nav>
+                <div className="container home-container">
+                    <h1>Welcome to Expat Journal!</h1>
+                    <h2>
+                        If you're a new user, please register.
+                        <br/> If you've already registered, please
+                        login to view posts.
+                    </h2>
+                    <div className="home-btn">
+                        <Link to="/register" className="home-btn">
+                            <button
+                                className="btn register-btn">Register
+                            </button>
+                        </Link>
+                        <Link to="/login">
+                            <button className="btn login-btn">Login
+                            </button>
+                        </Link>
+                    </div>
+                </div>
+            </div> ) }
+            <Route path="/login" component={ LoginPage }
+                   pathname={ this.props.location.pathname }/>
+            <Route path="/register" component={ Register }
+                   pathname={ this.props.location.pathname }/>
+            <PrivateRoute token={ this.props.token } exact path="/posts"
+                          component={ Posts }/>
+            <PrivateRoute token={ this.props.token } path="/posts/:id"
+                          component={ Post }/>
+            <PrivateRoute token={ this.props.token } path="/post-form"
+                          component={ PostForm }/>
+            <PrivateRoute token={ this.props.token } exact
+                          path="/user/:id" component={ Users }/>
+            <PrivateRoute token={ this.props.token } path="/update-form"
+                          component={ UpdateForm }/>
+        </div> );
     }
 }
 
 const mapStateToProps = state => ( {
-    user: state.usersReducer.user
+    user: state.usersReducer.user,
+    loggedIn: state.usersReducer.loggedIn,
+    token: state.usersReducer.jwtToken
 } );
 
-export default connect( mapStateToProps, { setUser } )( App );
+export default withRouter( connect( mapStateToProps,
+    { setUser, setJwtToken, }
+)(
+    App ) );
